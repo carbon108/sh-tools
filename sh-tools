@@ -1,0 +1,19 @@
+#!/bin/sh
+
+curl_bin(){
+
+local repo_path=$1
+local release_ver=$2
+local file_name=$3
+local download_dir=${4:-.}
+
+[[ -z $3 ]] &&\
+    return 1
+
+local out_file=$download_dir/$file_name
+
+curl https://github.com/$repo_path/releases/download/$release_ver/$file_name --output $download_dir/$out_file
+chmod +x $out_file
+
+}
+

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+call_Tester(){
+
+local tests_dir=$(dirname "$0")
+local src_dir=$(dirname "$tests_dir")
+
+source $src_dir/sh-tools
+
+printf "\nCurrent directory: $PWD\n"
+
+cd $tests_dir
+
+curl_bin 'krallin/tini' 'v0.18.0' 'tini' '.'
+! [[ -x "./tini" ]] &&\
+    printf "\nFile './tini' is Not executable or does not exist\n"
+rm ./tini
+}
+
+call_Tester
