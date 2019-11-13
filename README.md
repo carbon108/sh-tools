@@ -4,7 +4,7 @@ Shell tools for automaiting Docker builds
 
 ## Installation
 
-Get resource file `sh-tools`:
+Get resource file `sh-tools-rc`:
 
     sh_tools_version=0.1.1
     download_dir=/opt/carbon108
