@@ -1,11 +1,11 @@
 #!/bin/bash
 
-call_Tester(){
+call_tester(){
 
 local tests_dir=$(dirname "$0")
 local src_dir=$(dirname "$tests_dir")
 
-source $src_dir/sh-tools
+source $src_dir/sh-tools-rc
 
 printf "\nCurrent directory: $PWD\n"
 
@@ -29,4 +29,4 @@ rm -rf "$download_dir"
 
 }
 
-call_Tester
+call_tester

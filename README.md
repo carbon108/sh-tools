@@ -13,7 +13,7 @@ Get resource file `sh-tools`:
     
     curl -Lk $url --output $zip_file 
     mkdir -p "$download_dir"
-    unzip -j -o -q $zip_file "sh-tools-docker-${sh_tools_version}/sh-tools" -d "${download_dir}"
+    unzip -j -o -q $zip_file "sh-tools-docker-${sh_tools_version}/sh-tools-rc" -d "${download_dir}"
     rm $zip_file
 
 Source it:
