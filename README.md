@@ -7,13 +7,14 @@ Shell tools for automaiting Docker builds
 Get resource file `sh-tools`:
 
     sh_tools_version=0.1.1
-    download_dir=/tmp/carbon108
-    url=https://github.com/carbon108/sh-Tools-Docker/archive/${sh_tools_version}.zip
+    download_dir=/opt/carbon108
+    url=https://github.com/carbon108/sh-tools-docker/archive/${sh_tools_version}.zip
     zip_file=/tmp/carbon108_sh-tools-${sh_tools_version}.zip
     
     curl -Lk $url --output $zip_file 
     mkdir -p "$download_dir"
-    unzip -j -o -q $zip_file "sh-Tools-Docker-${sh_tools_version}/sh-tools" -d "${download_dir}"
+    unzip -j -o -q $zip_file "sh-tools-docker-${sh_tools_version}/sh-tools" -d "${download_dir}"
+    rm $zip_file
 
 Source it:
 
