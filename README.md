@@ -18,7 +18,7 @@ Get resource file `sh-tools`:
 
 Source it:
 
-    source $download_dir/sh-tools
+    source $download_dir/sh-tools-rc
 
 ## Usage
 
