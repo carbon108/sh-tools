@@ -1,19 +1,38 @@
 #!/bin/sh
 
-curl_bin(){
+curl_github(){
 
 local repo_path=$1
-local release_ver=$2
-local file_name=$3
-local download_dir=${4:-.}
+local release_tag=$2
+local download_dir=$3
+local files=${@:4}
 
-[[ -z $3 ]] &&\
+
+[[ -z $files ]] &&\
     return 1
 
-local out_file=$download_dir/$file_name
+local repo_name=${repo_path##*/}
+local release_trim=${release_tag#"${release_tag%%[0-9.-]*}"}
+    # Relese arcvhives in GitHub use trimmed release tags, non-digits seem to be removed from prefix
+    # HOWTO: https://unix.stackexchange.com/a/167766/203709
 
-curl https://github.com/$repo_path/releases/download/$release_ver/$file_name --output $download_dir/$out_file
-chmod +x $out_file
+local zip_name=${repo_path//\//_}_${release_tag}
+local zip_dir=/tmp/${zip_name}
+local zip_file=${zip_dir}/${zip_name}.zip
+
+mkdir -p $zip_dir
+mkdir -p $download_dir
+curl -Lk https://github.com/${repo_path}/archive/${release_tag}.zip --output ${zip_file}
+unzip -o -q "${zip_file}" -d "${zip_dir}"
+
+cd
+for f in ${files}
+do
+  cp "${zip_dir}/$repo_name-$release_trim/$f" "$download_dir"
+done
+
+# unzip "${zip_file_name}" "$repo_name-${release_tag}/sh-tools' -d "/tmp/sh"
+#chmod +x $out_file
 
 }
 
