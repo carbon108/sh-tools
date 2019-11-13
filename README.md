@@ -30,8 +30,8 @@ Extract specified file(s) from GitHub repo:
      
 For example 
  
-    curl_github krallin/tini v0.18.0 /tmp/tini "ddist.sh src/tini.c" 
+    curl_github krallin/tini v0.18.0 /opt/tini "ddist.sh src/tini.c" 
  
-downloads two files `ddist.sh` and `tini.c` from `https://github.com/krallin/tini` repository into `/tmp/tini` 
+downloads two files `ddist.sh` and `tini.c` from `https://github.com/krallin/tini` repository into `/opt/tini` 
 directory
  
