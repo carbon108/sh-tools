@@ -24,7 +24,7 @@ Source it:
 
 ### curl_github
 
-Extract specified file(s) from GitHub repo:
+Extract specified file(s) from GitHub repository archive into a flat directory. File attributes are preserved:
 
     curl_github ${repo_path} ${release_tag} $download_dir ${file_list}
      
@@ -32,6 +32,6 @@ For example
  
     curl_github krallin/tini v0.18.0 /opt/tini "ddist.sh src/tini.c" 
  
-downloads two files `ddist.sh` and `tini.c` from `https://github.com/krallin/tini` repository into `/opt/tini` 
-directory
+downloads two files `ddist.sh` and `tini.c` from repo source `https://github.com/krallin/tini/archive/v0.18.0.zip` 
+into `/opt/tini` directory
  
