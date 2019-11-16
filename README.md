@@ -24,7 +24,7 @@ Source it:
 
 ### curl_exists
 
-Return `0` if URL responce header is 200, returns `1` otherwise 
+Return `0` if URL response header reports no errors, returns `1` otherwise 
 
     curl_exists ${url}
 
@@ -45,13 +45,13 @@ Extract file(s) from GitHub release archive:
 
     curl_github "${repo_path}" "${release_tag}" "$download_dir" file_1 file_2...
 
-File attributes are preserved.
+File attributes are preserved, archive paths ignored in output.
      
 Example: 
  
-    curl_github krallin/tini v0.18.0 /opt/tini ddist.sh src/tini.c 
+    curl_github krallin/tini v0.18.0 /opt/tini ddist.sh ci/run_build.sh 
  
-extracts two files `ddist.sh` and `tini.c` from repository release 
+extracts two files `ddist.sh` and `run_build.sh` from repository release 
 `https://github.com/krallin/tini/archive/v0.18.0.zip` into `/opt/tini` directory
  
 ### curl_tini
