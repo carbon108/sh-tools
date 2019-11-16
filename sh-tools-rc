@@ -1,5 +1,15 @@
 #!/bin/bash
 
+curl_exists(){
+
+local url=$1
+
+curl --output /dev/null --silent --head --fail "$url" &&\
+    return 0
+return 1
+}
+
+
 curl_github(){
 
 local repo_path=$1
@@ -25,12 +35,6 @@ local zip_name=${repo_path//\//_}_${release_tag}
 local zip_dir=/tmp/${zip_name}
 local zip_file=${zip_dir}/${zip_name}.zip
 
-echo release_page $release_page
-echo archive_url $archive_url
-echo zip_name $zip_name
-echo zip_dir $zip_dir
-echo zip_file $zip_file
-
 ! curl_exists "$release_page"  &&\
     { curl_exists "https://github.com/${repo_path}/" &&\
           { printf "\nRelease '$release_tag' does not exist in '$repo_path' repository\n" &&\
@@ -49,17 +53,26 @@ unzip -o -q "${zip_file}" -d "${zip_dir}"
 
 for f in "${@:4}"
 do
-  cp "${zip_dir}/$repo_name-$release_trim/$f" "$download_dir" && echo $f
+  cp "${zip_dir}/$repo_name-$release_trim/$f" "$download_dir" && echo "$download_dir/${f##*/}"
 done
 
 }
 
-curl_exists(){
+curl_tini(){
 
-local url=$1
+local tini_path=${1:-/opt}
 
-curl --output /dev/null --silent --head --fail "$url" &&\
-    return 0
+local release_tag=${TINI_VERSION:-'v0.18.0'}
+local url=https://github.com/krallin/tini/releases/download/${release_tag}/tini
+local tini_file=$tini_path/tini
 
-return 1
+! curl_exists "$url"  &&\
+    printf "\ntini release '$tini_ver' not found\n" &&\
+          return 1
+
+mkdir -p $tini_path
+curl -Lk $url --output $tini_file &&\
+    chmod +x $tini_file &&\
+    echo "$tini_file"
+
 }
