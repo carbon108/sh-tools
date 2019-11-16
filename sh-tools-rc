@@ -1,34 +1,65 @@
-#!/bin/sh
+#!/bin/bash
 
 curl_github(){
 
 local repo_path=$1
 local release_tag=$2
 local download_dir=$3
-local file_list=${@:4}
+local file_list_element=$4
 
-[[ -z $file_list ]] &&\
+[[ -z $file_list_element ]] &&\
     return 1
 
 local repo_name=${repo_path##*/}
-local release_trim=${release_tag#"${release_tag%%[0-9.-]*}"}
-    # Reason: Relese arcvhives in GitHub use trimmed release tags, non-digits seem to be removed
-    #         from tag prefix
-    # HOWTO: https://unix.stackexchange.com/a/167766/203709
 
+local release_trim=${release_tag#"${release_tag%%[0-9.-]*}"}
+      release_trim=${release_trim:-$release_tag}
+    # Reason: Untagged archives are just compressed repository sorces ${branch_name}.zip, i.e. usually letters-only
+    #         Tagged arcvhives are releses on GitHub. They use trimmed release tags inside archive,
+    #         non-digits seem to be removed from tag prefix
+    # Replace idiom: https://unix.stackexchange.com/a/167766/203709
+
+local release_page=https://github.com/${repo_path}/releases/tag/${release_tag}/
+local archive_url=https://github.com/${repo_path}/archive/${release_tag}.zip
 local zip_name=${repo_path//\//_}_${release_tag}
 local zip_dir=/tmp/${zip_name}
 local zip_file=${zip_dir}/${zip_name}.zip
 
+echo release_page $release_page
+echo archive_url $archive_url
+echo zip_name $zip_name
+echo zip_dir $zip_dir
+echo zip_file $zip_file
+
+! curl_exists "$release_page"  &&\
+    { curl_exists "https://github.com/${repo_path}/" &&\
+          { printf "\nRelease '$release_tag' does not exist in '$repo_path' repository\n" &&\
+          return 1
+          }
+
+      printf "\nRepository '$repo_path' does not exist on GitHub or is private\n" &&\
+      return 1
+    }
+
 mkdir -p $zip_dir
 mkdir -p $download_dir
-curl -Lk https://github.com/${repo_path}/archive/${release_tag}.zip --output ${zip_file}
+curl -Lk $archive_url --output ${zip_file}
+
 unzip -o -q "${zip_file}" -d "${zip_dir}"
 
-for f in ${file_list}
+for f in "${@:4}"
 do
-  cp "${zip_dir}/$repo_name-$release_trim/$f" "$download_dir"
+  cp "${zip_dir}/$repo_name-$release_trim/$f" "$download_dir" && echo $f
 done
 
 }
 
+curl_exists(){
+
+local url=$1
+
+curl --output /dev/null --silent --head --fail "$url" &&\
+    return 0
+
+return 1
+}
