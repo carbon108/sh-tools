@@ -1,31 +1,20 @@
 # Shell Tools
 
-Shell tools for automaiting Docker builds
+Shell tools for automaiting Docker image builds
 
 ## Installation
 
-Create script`get_sh-tools-rc`:
+Get and run installer `install-sh-tools-rc`:
 
-    #!/bin/bash
-    
-    sh_tools_version=${1:-0.1.2}
-    scripts_dir=${2:-/opt/carbon108}
-    
-    archive_url=https://github.com/carbon108/sh-tools-docker/archive/${sh_tools_version}.zip
-    zip_file=/tmp/carbon108_sh-tools-${sh_tools_version}.zip
-    
-    curl -Lk $archive_url --output $zip_file 
-    mkdir -p "$scripts_dir"
-    unzip -j -o -q $zip_file "sh-tools-docker-${sh_tools_version}/sh-tools-rc" -d "${scripts_dir}"
-    rm $zip_file
+    curl -Lk $INSTALL_SH_TOOLS_URL --output /tmp/install-sh-tools \
+        && chmod +x /tmp/install-sh-tools \
+        && /tmp/install-sh-tools ${SHTOOLS_VERSION} ${SCRIPTS_DIR} \
+        && rm /tmp/install-sh-tools      
+  
+Source it in Dockerfile:
 
-Call the script above to get the `sh-tools-rc` resource file:
-
-    get_sh-tools-rc ${version} ${scripts_dir}
-
-Source it:
-
-    source $scripts_dir/sh-tools-rc
+    +++ GOOD: see https://stackoverflow.com/questions/20635472/using-the-run-instruction-in-a-dockerfile-with-source-does-not-work
+    --- BAD: source $scripts_dir/sh-tools-rc
 
 ## Usage
 
