@@ -8,13 +8,13 @@ Get and run installer `install-sh-tools-rc`:
 
     curl -Lk $INSTALL_SH_TOOLS_URL --output /tmp/install-sh-tools \
         && chmod +x /tmp/install-sh-tools \
-        && /tmp/install-sh-tools ${SHTOOLS_VERSION} ${SCRIPTS_DIR} \
+        && /tmp/install-sh-tools $SHTOOLS_VERSION "$SCRIPTS_DIR" \
         && rm /tmp/install-sh-tools      
   
 Source it in Dockerfile:
 
     +++ GOOD: see https://stackoverflow.com/questions/20635472/using-the-run-instruction-in-a-dockerfile-with-source-does-not-work
-    --- BAD: source $scripts_dir/sh-tools-rc
+    --- BAD: source "$scripts_dir/sh-tools-rc"
 
 ## Usage
 
