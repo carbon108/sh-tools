@@ -14,13 +14,6 @@ cd $tests_dir || return 1
 local download_dir=$PWD/test_sh-tools-output-$(date +%s)
 
 
-printf "\nTest curl_exists works on google.com...\n"
-! curl_exists "https://google.com/" &&\
-    printf "\nTest fail: Can not curl google.com/\n"
-curl_exists "https://google.com/QKJDGHscdsQKJshd"  &&\
-    printf "\nTest fail: False positive response from google.com/\n"
-
-
 printf "\nTest curl_github gets two files...\n\n"
 curl_github 'krallin/tini' 'v0.18.0' $download_dir ddist.sh src/tini.c
 ! [[ -f "$download_dir/ddist.sh" ]] &&\

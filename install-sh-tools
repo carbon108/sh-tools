@@ -1,13 +1,13 @@
 #!/bin/bash
 
 SHTOOLS_VERSION=${1:-0.1.3}
-SCRIPTS_DIR=${2:-/opt/carbon108}
+SHTOOLS_DIR=${2:-/opt/carbon108}
 
 sh_tools_url=https://github.com/carbon108/sh-tools-docker/archive/$SHTOOLS_VERSION.zip
 sh_tools_zip=/tmp/carbon108_sh-tools-$SHTOOLS_VERSION.zip
 
 curl -Lk $sh_tools_url --output $sh_tools_zip &&\
-    mkdir -p "$SCRIPTS_DIR" &&\
-    unzip -j -o -q $sh_tools_zip "sh-tools-docker-$SHTOOLS_VERSION/sh-tools-rc" -d "${SCRIPTS_DIR}"
+    mkdir -p "$SHTOOLS_DIR" &&\
+    unzip -j -o -q $sh_tools_zip "sh-tools-docker-$SHTOOLS_VERSION/sh-tools-rc" -d "${SHTOOLS_DIR}"
 
 rm -f $sh_tools_zip

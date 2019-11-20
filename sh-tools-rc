@@ -1,13 +1,3 @@
-#!/bin/bash
-
-curl_exists(){
-
-local url=$1
-
-curl --output /dev/null --silent --head --fail "$url" &&\
-    return 0
-return 1
-}
 
 
 curl_github(){
