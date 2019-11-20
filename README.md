@@ -1,26 +1,37 @@
 # Shell Tools
 
-Shell tools for automaiting Docker image builds
+Shell tools for automating Docker image builds
 
 ## Installation
 
+Follow instructions below in your Dockerfile.
+
+Set environment variables:
+
+    ENV SHTOOLS_VERSION 0.1.3
+    ENV SCRIPTS_DIR /opt/carbon108    
+
 Get and run installer `install-sh-tools-rc`:
 
-    curl -Lk $INSTALL_SH_TOOLS_URL --output /tmp/install-sh-tools \
-        && chmod +x /tmp/install-sh-tools \
-        && /tmp/install-sh-tools $SHTOOLS_VERSION "$SCRIPTS_DIR" \
-        && rm /tmp/install-sh-tools      
-  
-Source it in Dockerfile:
+    RUN curl -Lk https://github.com/carbon108/sh-tools-docker/releases/download/get/install-sh-tools \
+        --output /tmp/install-sh-tools && chmod +x /tmp/install-sh-tools \
+        && /tmp/install-sh-tools "$SHTOOLS_VERSION" "$SCRIPTS_DIR" && rm /tmp/install-sh-tools     
 
-    +++ GOOD: see https://stackoverflow.com/questions/20635472/using-the-run-instruction-in-a-dockerfile-with-source-does-not-work
-    --- BAD: source "$scripts_dir/sh-tools-rc"
+Add `sh-tools` directory to PATH:
+
+    ENV PATH "$SCRIPTS_DIR:$PATH"  
+
+Call `sh-tools` scripts in Dockerfile or in running container:
+
+    RUN curl_tini ${TINI_VERSION} /opt  
+
+More info on shell in Docker: https://github.com/moby/moby/issues/7281#issuecomment-389440503
 
 ## Usage
 
 ### curl_exists
 
-Return `0` if URL response header reports no errors, returns `1` otherwise 
+Return `true` if URL response header reports no errors, returns `false` otherwise 
 
     curl_exists ${url}
 
