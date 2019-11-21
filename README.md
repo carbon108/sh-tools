@@ -10,27 +10,27 @@ Set environment variables:
 
 ```dockerfile
 ENV SHTOOLS_VERSION 0.1.3
-ENV SCRIPTS_DIR /opt/carbon108   
+ENV SHTOOLS_DIR /opt/carbon108   
 ```
 
-Get and run installer `install-sh-tools-rc`:
+Get and run installer `install-sh-tools`:
 
 ```dockerfile
 RUN curl -Lk https://github.com/carbon108/sh-tools/releases/download/get/install-sh-tools \
     --output /tmp/install-sh-tools && chmod +x /tmp/install-sh-tools \
-    && /tmp/install-sh-tools "$SHTOOLS_VERSION" "$SCRIPTS_DIR" && rm /tmp/install-sh-tools     
+    && /tmp/install-sh-tools "$SHTOOLS_VERSION" "$SHTOOLS_DIR" && rm /tmp/install-sh-tools     
 ```
 
 Add `sh-tools` directory to PATH:
 
 ```dockerfile
-ENV PATH "$SCRIPTS_DIR:$PATH"  
+ENV PATH "$SHTOOLS_DIR:$PATH"  
 ```
 
 Call `sh-tools` scripts in Dockerfile or in running container:
 
 ```dockerfile
-RUN curl-tini ${TINI_VERSION} /opt 
+RUN curl-tini /opt 
 ```
 
 ## Usage
@@ -43,7 +43,7 @@ Return `true` if URL response header reports no errors, returns `false` otherwis
 curl-exists ${url}
 ```
 
-Page content is not retrieved
+Page content is NOT retrieved
 
 #### Example:
 
@@ -63,15 +63,16 @@ Extract file(s) from GitHub release archive into a flat directory:
 ```dockerfile
 RUN curl-github "${repo_path}" "${release_tag}" "$download_dir" file_1 file_2...
 ```
-File attributes are preserved, archive paths ignored in output.
+File attributes are preserved. Zip-file archive paths are ignored in output.
      
-Example: 
+#### Example
+
+Extract two files `Test-Linux-CVEs` and `Test-Python-CVEs` from repository release 
+`https://github.com/carbon108/cve-tests/archive/0.1.0.zip` into `/opt` directory
 
 ```dockerfile
-RUN curl-github krallin/tini v0.18.0 /opt/tini ddist.sh ci/run_build.sh 
+RUN curl-github carbon108/cve-tests 0.1.0 /opt Test-Linux-CVEs Test-Python-CVEs 
 ``` 
-extracts two files `ddist.sh` and `run_build.sh` from repository release 
-`https://github.com/krallin/tini/archive/v0.18.0.zip` into `/opt/tini` directory
  
 ### `curl-tini`
 
@@ -80,14 +81,16 @@ Get `tini` executable from GitHub into destination directory `${tini_path}`
 ```dockerfile
 RUN curl-tini ${tini_path}
 ```    
-relese version `${TINI_VERSION}` should be specified in environment, default is used 
-otherwise
+
+#### Environment
+
+`${TINI_VERSION}` is `tini` archive release version. If not set defaults to `v0.18.XX`
     
-Example: 
+#### Example 
 
 ```dockerfile
 ENV TINI_VERSION 'v0.18.0'
-RUN curl-tini /opt/bin
+RUN curl-tini /opt
 ```
 extracts specified `tini` version from `https://github.com/krallin/tini` release archive 
 into `/opt/tini` executable       
