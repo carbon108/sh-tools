@@ -7,11 +7,11 @@ PATH=$src_dir:$PATH
 
 printf "\nTest curl_exists works on google.com..."
 
-! curl_exists "https://google.com/" &&\
+! curl-exists "https://google.com/" &&\
     printf "\nTest fail: Can not curl google.com/\n"  &&\
     exit 1
 
-curl_exists "https://google.com/QKJDGHscdsQKJshd"  &&\
+curl-exists "https://google.com/QKJDGHscdsQKJshd"  &&\
     printf "\nTest fail: False positive response from google.com/\n" &&\
     exit 1
 
