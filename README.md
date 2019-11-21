@@ -45,7 +45,7 @@ curl-exists ${url}
 
 Page content is not retrieved
 
-Example:
+#### Example:
 
 ```shell script
 if curl-exists "https://google.com/"
@@ -75,12 +75,13 @@ extracts two files `ddist.sh` and `run_build.sh` from repository release
  
 ### `curl-tini`
 
-Get `tini` executable from GitHub into destination directory
+Get `tini` executable from GitHub into destination directory `${tini_path}`
 
 ```dockerfile
 RUN curl-tini ${tini_path}
 ```    
-relese version `${TINI_VERSION}` should be specified in environment, default is used otherwise
+relese version `${TINI_VERSION}` should be specified in environment, default is used 
+otherwise
     
 Example: 
 
