@@ -80,7 +80,7 @@ Get `tini` executable from GitHub into destination directory
 ```dockerfile
 RUN curl-tini ${tini_path}
 ```    
-`${TINI_VERSION}` should be specified in environment, default version is used otherwise
+relese version `${TINI_VERSION}` should be specified in environment, default is used otherwise
     
 Example: 
 
@@ -88,4 +88,5 @@ Example:
 ENV TINI_VERSION 'v0.18.0'
 RUN curl-tini /opt/bin
 ```
-extracts specified `tini` version from `https://github.com/krallin/tini` release archive into `/opt/tini` executable       
+extracts specified `tini` version from `https://github.com/krallin/tini` release archive 
+into `/opt/tini` executable       
