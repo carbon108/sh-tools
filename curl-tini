@@ -1,0 +1,19 @@
+#!/bin/sh
+
+SHTOOLS_DIR=$(dirname "$0")
+TINI_PATH=${1:-"$SHTOOLS_DIR"}
+
+PATH=$SHTOOLS_DIR:$PATH
+
+release_tag=${TINI_VERSION:-'v0.18.0'}
+url=https://github.com/krallin/tini/releases/download/${release_tag}/tini
+tini_file="$TINI_PATH/tini"
+
+! curl-exists "$url"  &&\
+    printf "\ntini release '$tini_ver' not found\n" &&\
+    exit 1
+
+mkdir -p $TINI_PATH
+curl -Lk $url --output $tini_file &&\
+    chmod +x $tini_file &&\
+    printf "tini: $tini_file\n"
