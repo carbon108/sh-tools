@@ -85,6 +85,7 @@ RUN curl-tini ${tini_path}
 Example: 
 
 ```dockerfile
+ENV TINI_VERSION 'v0.18.0'
 RUN curl-tini /opt/bin
 ```
-extracts `tini` from `https://github.com/krallin/tini` release archive to `/opt/tini` executable       
+extracts specified `tini` version from `https://github.com/krallin/tini` release archive into `/opt/tini` executable       
