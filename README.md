@@ -84,7 +84,7 @@ RUN curl-tini ${tini_path}
 
 #### Environment
 
-`${TINI_VERSION}` is `tini` archive release version. If not set defaults to `v0.18.XX`
+`${TINI_VERSION}` the archive release version. If not set defaults to `v0.18.XX`
     
 #### Example 
 
@@ -92,5 +92,6 @@ RUN curl-tini ${tini_path}
 ENV TINI_VERSION 'v0.18.0'
 RUN curl-tini /opt
 ```
-extracts specified `tini` version from `https://github.com/krallin/tini` release archive 
+extracts `tini` from the `https://github.com/krallin/tini` release archive `v0.18.0`
 into `/opt/tini` executable       
+
