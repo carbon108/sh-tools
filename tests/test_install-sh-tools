@@ -10,7 +10,7 @@ PATH=$tests_dir:$src_dir:$PATH
 printf "\nRunning tests...
 Current directory: $PWD\n"
 
-printf "\nTest installer gets sh-tools scripts...\n\n"
+printf "\nTest 'install-sh-tools' gets scripts...\n\n"
 
 install-sh-tools "0.1.4" "$download_dir"
 
@@ -25,4 +25,4 @@ for cmd in $cmd_list
   done
 
 rm -rf "$download_dir"
-printf "\n...Installer test returned OK\n"
+printf "\n...'install-sh-tools' test returned OK\n"
