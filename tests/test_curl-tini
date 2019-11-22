@@ -4,7 +4,7 @@ tests_dir=$(dirname "$0")
 src_dir=$(dirname "$tests_dir")
 download_dir=$tests_dir/curl-tini-out-$(date +%s)
 
-PATH=$src_dir:$PATH
+PATH=$tests_dir:$src_dir:$PATH
 
 printf "\nTest curl-tini gets tini binary..."
 
