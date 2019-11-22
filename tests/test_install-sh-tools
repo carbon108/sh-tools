@@ -25,4 +25,4 @@ for cmd in $cmd_list
   done
 
 rm -rf "$download_dir"
-printf "\nInstaller test returned OK\n"
+printf "\n...Installer test returned OK\n"

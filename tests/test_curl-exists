@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 tests_dir=$(dirname "$0")
 src_dir=$(dirname "$tests_dir")
