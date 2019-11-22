@@ -43,9 +43,7 @@ Return `true` if URL response header reports no errors, returns `false` otherwis
 curl-exists ${url}
 ```
 
-Page content is NOT retrieved
-
-#### Example:
+#### Example
 
 ```shell script
 if curl-exists "https://google.com/"
@@ -76,7 +74,7 @@ RUN curl-github carbon108/sh-tools 0.1.4 /opt curl-exists tests/test_curl-exists
  
 ### `curl-tini`
 
-Get `tini` executable from GitHub into destination directory `${tini_dir}`
+Get `krallin/tini` executable from GitHub into destination directory `${tini_dir}`
 
 ```dockerfile
 RUN curl-tini ${tini_dir}
@@ -92,8 +90,5 @@ RUN curl-tini ${tini_dir}
 ENV TINI_VERSION 'v0.18.0'
 RUN curl-tini /opt
 ```
-!! TODO !!
- 
-extracts `tini` from the `https://github.com/krallin/tini` release archive `v0.18.0`
-into `/opt/tini` executable       
+creates `/opt/tini` executable       
 
