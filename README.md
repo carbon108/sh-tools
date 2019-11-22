@@ -9,16 +9,19 @@ Follow instructions below in your Dockerfile.
 Set environment variables:
 
 ```dockerfile
-ENV SHTOOLS_VERSION 0.1.3
+ENV SHTOOLS_VERSION 0.X.Y
 ENV SHTOOLS_DIR /opt/carbon108   
 ```
 
 Get and run installer `install-sh-tools`:
 
 ```dockerfile
-RUN curl -Lk https://github.com/carbon108/sh-tools/releases/download/get/install-sh-tools \
-    --output /tmp/install-sh-tools && chmod +x /tmp/install-sh-tools \
-    && /tmp/install-sh-tools "$SHTOOLS_VERSION" "$SHTOOLS_DIR" && rm /tmp/install-sh-tools     
+RUN curl -Lk https://github.com/carbon108/sh-tools/archive/${SHTOOLS_VERSION}.zip \
+        --output /tmp/c108-sh-tools.zip &&\
+    unzip -j -o -q /tmp/c108-sh-tools.zip \
+        sh-tools-${SHTOOLS_VERSION}/install-sh-tools -d /tmp \
+    && /tmp/install-sh-tools "$SHTOOLS_VERSION" "$SHTOOLS_DIR" \
+    && rm /tmp/install-sh-tools /tmp/c108-sh-tools.zip
 ```
 
 Add `sh-tools` directory to PATH:
