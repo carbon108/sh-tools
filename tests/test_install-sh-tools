@@ -1,26 +1,28 @@
 #!/bin/bash
 
-call_tester(){
+tests_dir=$(dirname "$0")
+src_dir=$(dirname "$tests_dir")
 
-local tests_dir=$(dirname "$0")
-local src_dir=$(dirname "$tests_dir")
-
-local download_dir=$tests_dir/test_install-sh-tools-out-$(date +%s)
+download_dir=$tests_dir/test_install-sh-tools-out-$(date +%s)
 
 PATH=$tests_dir:$src_dir:$PATH
 
 printf "\nRunning tests...
 Current directory: $PWD\n"
 
+printf "\nTest installer gets sh-tools scripts...\n\n"
 
-printf "\nTest installer gets resource file...\n\n"
+install-sh-tools "0.1.4" "$download_dir"
 
-install-sh-tools "0.1.3" "$download_dir"
-! [[ -f "$download_dir/sh-tools-rc" ]] &&\
-    printf "\nTest fail: File 'sh-tools-rc' Not found\n"
+cmd_list="curl-exists
+          curl-tini"
+
+for cmd in $cmd_list
+  do
+    ! [[ -x "$download_dir/$cmd" ]] &&\
+        printf "\nTest fail: File '$cmd' not found or is not executable\n" &&\
+            exit 1
+  done
 
 rm -rf "$download_dir"
-
-}
-
-call_tester
+printf "\nInstaller test returned OK\n"

@@ -4,10 +4,20 @@ SHTOOLS_VERSION=${1:-0.1.3}
 SHTOOLS_DIR=${2:-/opt/carbon108}
 
 sh_tools_url=https://github.com/carbon108/sh-tools-docker/archive/$SHTOOLS_VERSION.zip
-sh_tools_zip=/tmp/carbon108_sh-tools-$SHTOOLS_VERSION.zip
 
-curl -Lk $sh_tools_url --output $sh_tools_zip &&\
-    mkdir -p "$SHTOOLS_DIR" &&\
-    unzip -j -o -q $sh_tools_zip "sh-tools-docker-$SHTOOLS_VERSION/sh-tools-rc" -d "${SHTOOLS_DIR}"
+tmp_dir=/tmp/carbon108-sh-tools-182WJHDCJH74647-installer
+sh_tools_zip=$tmp_dir/sh-tools-$SHTOOLS_VERSION.zip
 
-rm -f $sh_tools_zip
+cmd_list="curl-exists
+          curl-tini"
+
+mkdir -p "$SHTOOLS_DIR" &&\
+    mkdir -p "$tmp_dir" &&\
+    curl -Lk $sh_tools_url --output $sh_tools_zip &&\
+    unzip -o -q $sh_tools_zip -d "$tmp_dir" &&\
+    for cmd in $cmd_list
+        do
+        cp $tmp_dir/sh-tools-$SHTOOLS_VERSION/$cmd $SHTOOLS_DIR
+        done
+
+rm -rf $tmp_dir
