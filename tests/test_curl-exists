@@ -3,7 +3,7 @@
 tests_dir=$(dirname "$0")
 src_dir=$(dirname "$tests_dir")
 
-PATH=$src_dir:$PATH
+PATH=$tests_dir:$src_dir:$PATH
 
 printf "\nTest curl_exists works on google.com..."
 

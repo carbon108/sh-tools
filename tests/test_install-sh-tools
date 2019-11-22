@@ -7,13 +7,15 @@ local src_dir=$(dirname "$tests_dir")
 
 local download_dir=$tests_dir/test_install-sh-tools-out-$(date +%s)
 
+PATH=$tests_dir:$src_dir:$PATH
+
 printf "\nRunning tests...
 Current directory: $PWD\n"
 
 
 printf "\nTest installer gets resource file...\n\n"
 
-$src_dir/install-sh-tools "0.1.3" "$download_dir"
+install-sh-tools "0.1.3" "$download_dir"
 ! [[ -f "$download_dir/sh-tools-rc" ]] &&\
     printf "\nTest fail: File 'sh-tools-rc' Not found\n"
 
