@@ -1,0 +1,58 @@
+#!/bin/bash
+
+REPO_PATH=$1
+RELEASE_TAG=$2
+DOWNLOAD_DIR=$3
+FILE_LIST_ELEMENT=$4
+
+SCRIPT_DIR=$(dirname "$0")
+PATH=$SCRIPT_DIR:$PATH
+
+#printf "\nSCRIPT_DIR $SCRIPT_DIR\n"
+#printf "\nPATH $PATH\n"
+
+[[ -z $FILE_LIST_ELEMENT ]] &&\
+    printf "\nFiles to extract not specified. Exiting...\n" &&\
+    exit 1
+
+repo_name=${REPO_PATH##*/}
+    # should provide suffix after `/`
+
+release_trim=${RELEASE_TAG#"${RELEASE_TAG%%[0-9.-]*}"}
+    # should remove letters in tag prefix
+release_trim=${release_trim:-$RELEASE_TAG}
+    # should restore to original tag
+    # Reason:  `v0.1.1`   makes simply `0.1.1` tag in archives
+    #          `letters`  makes `letters` tag in archives
+    #          Tagged arcvhives are releases on GitHub. They use trimmed release tags inside archive,
+    #          non-digits seem to be removed from tag prefix
+    # Replace info: https://unix.stackexchange.com/a/167766/203709
+
+release_page=https://github.com/${REPO_PATH}/releases/tag/${RELEASE_TAG}/
+archive_url=https://github.com/${REPO_PATH}/archive/${RELEASE_TAG}.zip
+zip_name=${REPO_PATH//\//_}_${RELEASE_TAG}
+tmp_dir=/tmp/${zip_name}
+zip_file=${tmp_dir}/${zip_name}.zip
+
+! curl-exists "$release_page"  &&\
+    { curl-exists "https://github.com/${REPO_PATH}/" &&\
+          { printf "\nRelease '$RELEASE_TAG' does not exist in '$REPO_PATH' repository\n" &&\
+          exit 1
+          }
+
+      printf "\nRepository '$REPO_PATH' does not exist on GitHub or is private\n" &&\
+      exit 1
+    }
+
+mkdir -p $tmp_dir &&\
+    mkdir -p $DOWNLOAD_DIR &&\
+    curl -Lk $archive_url --output ${zip_file} &&\
+    unzip -o -q "${zip_file}" -d "${tmp_dir}" &&\
+    for f in "${@:4}"
+        do
+        cp "${tmp_dir}/$repo_name-$release_trim/$f" "$DOWNLOAD_DIR"
+    done
+
+rm -rf $tmp_dir
+
+
