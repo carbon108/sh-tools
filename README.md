@@ -67,19 +67,19 @@ File attributes are preserved. Zip-file archive paths are ignored in output.
      
 #### Example
 
-Extract two files `Test-Linux-CVEs` and `Test-Python-CVEs` from repository release 
-`https://github.com/carbon108/cve-tests/archive/0.1.0.zip` into `/opt` directory
+Extract two files `curl-exists` and `test_curl-exists` from `sh-tools` 
+release `0.1.4` into `/opt` directory
 
 ```dockerfile
-RUN curl-github carbon108/cve-tests 0.1.0 /opt Test-Linux-CVEs Test-Python-CVEs 
+RUN curl-github carbon108/sh-tools 0.1.4 /opt curl-exists tests/test_curl-exists 
 ``` 
  
 ### `curl-tini`
 
-Get `tini` executable from GitHub into destination directory `${tini_path}`
+Get `tini` executable from GitHub into destination directory `${tini_dir}`
 
 ```dockerfile
-RUN curl-tini ${tini_path}
+RUN curl-tini ${tini_dir}
 ```    
 
 #### Environment
@@ -92,6 +92,8 @@ RUN curl-tini ${tini_path}
 ENV TINI_VERSION 'v0.18.0'
 RUN curl-tini /opt
 ```
+!! TODO !!
+ 
 extracts `tini` from the `https://github.com/krallin/tini` release archive `v0.18.0`
 into `/opt/tini` executable       
 
