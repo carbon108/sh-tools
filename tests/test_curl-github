@@ -1,0 +1,26 @@
+#!/bin/bash
+
+tests_dir=$(dirname "$0")
+src_dir=$(dirname "$tests_dir")
+
+download_dir=$tests_dir/test_curl-github-out-$(date +%s)
+
+PATH=$tests_dir:$src_dir:$PATH
+
+script_name="curl-github"
+printf "\nTest $script_name on 2x sh-tools scripts...\n\n"
+
+curl-github carbon108/sh-tools "0.1.4"  "$download_dir" curl-exists tests/test_curl-exists
+
+file_list="curl-exists
+           test_curl-exists"
+
+for f in $file_list
+  do
+    ! [[ -x "$download_dir/$f" ]] &&\
+        printf "\nTest fail: File '$f' not found or is not executable\n" &&\
+            exit 1
+  done
+
+rm -rf "$download_dir"
+printf "\n...$script_name test returned OK\n"
