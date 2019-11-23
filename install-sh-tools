@@ -8,7 +8,9 @@ sh_tools_url=https://github.com/carbon108/sh-tools-docker/archive/$SHTOOLS_VERSI
 tmp_dir=/tmp/carbon108-sh-tools-182WJHDCJH74647-installer
 sh_tools_zip=$tmp_dir/sh-tools-$SHTOOLS_VERSION.zip
 
-cmd_list="curl-exists
+cmd_list="curl-cvetest
+          curl-exists
+          curl-github
           curl-tini"
 
 mkdir -p "$SHTOOLS_DIR" &&\

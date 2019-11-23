@@ -21,4 +21,4 @@ for f in $file_list
             exit 1
   done
 rm -rf "$download_dir"
-printf "\n...$script_name test returned OK\n"
+printf "\n...OK\n"
