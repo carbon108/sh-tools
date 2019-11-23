@@ -36,7 +36,31 @@ Call `sh-tools` scripts in Dockerfile or in running container:
 RUN curl-tini /opt 
 ```
 
+
 ## Usage
+
+
+### `curl-cvetest`
+
+Get CVE testing tools from `carbon108/cve-test` 
+
+```dockerfile
+RUN curl-cvetest ${download_dir} CVE_type_1 CVE_type_2...
+```   
+Supported CVE types: `linux`, `python` 
+
+#### Environment
+
+`${CVETEST_VERSION}` release version if not set defaults to `v0.1.XX`
+    
+#### Example 
+
+```dockerfile
+ENV CVETEST_VERSION '0.1.1'
+RUN curl-cvetest /opt linux python
+```
+creates `/opt/tini` executable  
+
 
 ### `curl-exists`
 
@@ -62,7 +86,7 @@ fi
 Extract file(s) from GitHub release archive into a flat directory:
 
 ```dockerfile
-RUN curl-github "${repo_path}" "${release_tag}" "$download_dir" file_1 file_2...
+RUN curl-github ${repo_path} ${release_tag} ${download_dir} file_1 file_2...
 ```
 File attributes are preserved. Zip-file archive paths are ignored in output.
      
@@ -77,10 +101,10 @@ RUN curl-github carbon108/sh-tools 0.1.4 /opt curl-exists tests/test_curl-exists
  
 ### `curl-tini`
 
-Get `krallin/tini` executable from GitHub into destination directory `${tini_dir}`
+Get `krallin/tini` executable from GitHub into destination directory `${download_dir}`
 
 ```dockerfile
-RUN curl-tini ${tini_dir}
+RUN curl-tini ${download_dir}
 ```    
 
 #### Environment

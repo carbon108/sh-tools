@@ -1,0 +1,21 @@
+#!/bin/bash
+
+tests_dir=$(dirname "$0")
+src_dir=$(dirname "$tests_dir")
+download_dir=$tests_dir/curl-cvetest-out-$(date +%s)
+
+PATH=$tests_dir:$src_dir:$PATH
+
+printf "\nTest curl-cvetest gets 2x scripts...\n\n"
+curl-cvetest "$download_dir" linux python
+
+! [[ -x "$download_dir/test-linux-cve" ]] &&\
+    printf "\nTest fail: File 'test-linux-cve' not found or is not executable\n" &&\
+    exit 1
+
+! [[ -x "$download_dir/test-python-cve" ]] &&\
+    printf "\nTest fail: File 'test-python-cve' not found or is not executable\n" &&\
+    exit 1
+
+rm -rf "$download_dir"
+printf "\n...OK\n"
