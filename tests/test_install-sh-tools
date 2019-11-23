@@ -11,18 +11,16 @@ printf "\nRunning tests...
 Current directory: $PWD\n"
 
 printf "\nTest 'install-sh-tools' gets scripts...\n\n"
-
 install-sh-tools "0.1.4" "$download_dir"
 
 cmd_list="curl-exists
           curl-tini"
-
 for cmd in $cmd_list
   do
     ! [[ -x "$download_dir/$cmd" ]] &&\
         printf "\nTest fail: File '$cmd' not found or is not executable\n" &&\
             exit 1
   done
-
 rm -rf "$download_dir"
+
 printf "\n...'install-sh-tools' test returned OK\n"
