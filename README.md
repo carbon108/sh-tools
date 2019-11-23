@@ -81,6 +81,7 @@ else
 fi
 ```
 
+
 ### `curl-github`
 
 Extract file(s) from GitHub release archive into a flat directory:
@@ -89,6 +90,9 @@ Extract file(s) from GitHub release archive into a flat directory:
 RUN curl-github ${repo_path} ${release_tag} ${download_dir} file_1 file_2...
 ```
 File attributes are preserved. Zip-file archive paths are ignored in output.
+
+`curl-github` is a convenience script that can be used for building 
+new `curl-{REPO_NAME}` tools like `curl-cvetest` and `curl-tini` in this collection
      
 #### Example
 
