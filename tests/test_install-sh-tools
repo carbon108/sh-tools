@@ -11,7 +11,7 @@ printf "\nRunning tests...
 Current directory: $PWD\n"
 
 printf "\nTest 'install-sh-tools' gets scripts...\n\n"
-install-sh-tools "0.1.4" "$download_dir"
+install-sh-tools "0.1.5" "$download_dir"
 
 cmd_list="curl-cvetest
           curl-exists
@@ -26,4 +26,4 @@ for cmd in $cmd_list
   done
 rm -rf "$download_dir"
 
-printf "\n...'install-sh-tools' test returned OK\n"
+printf "\n...OK\n"
