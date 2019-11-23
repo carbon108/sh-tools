@@ -6,11 +6,11 @@ download_dir=$tests_dir/curl-tini-out-$(date +%s)
 
 PATH=$tests_dir:$src_dir:$PATH
 
-printf "\nTest curl-tini gets tini binary...\n"
+printf "\nTest curl-tini gets tini binary...\n\n"
 curl-tini $download_dir
 
 ! [[ -x "$download_dir/tini" ]] &&\
     printf "\nTest fail: File 'tini' not found or is not executable\n" &&\
     exit 1
 rm -rf "$download_dir"
-printf " ...OK\n"
+printf "\n...OK\n"
