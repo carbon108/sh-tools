@@ -59,7 +59,7 @@ Supported CVE types: `linux`, `python`
 ENV CVETEST_VERSION '0.1.1'
 RUN curl-cvetest /opt linux python
 ```
-creates `/opt/tini` executable  
+creates two executables`test-linux-cve` and `test-python-cve` in `/opt` directory  
 
 
 ### `curl-exists`
