@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 tests_dir=$(dirname "$0")
 src_dir=$(dirname "$tests_dir")
 PATH=$tests_dir:$src_dir:$PATH
@@ -10,13 +9,12 @@ download_dir=$tests_dir/test_install-sh-tools-out-$(date +%s)
 printf "\nRunning tests...
 Current directory: $PWD\n"
 
-printf "\nTest 'install-sh-tools' gets scripts...\n\n"
+printf "\nTest 'install-sh-tools' gets 3x scripts...\n\n"
 
-install-sh-tools 0.1.5 ${download_dir}
+install-sh-tools 0.1.6 ${download_dir}
 
-cmd_list="curl-cvetest
+cmd_list="apt-get-add
           curl-exists
-          curl-github
           curl-tini"
 
 for cmd in $cmd_list
