@@ -1,17 +1,18 @@
 #!/bin/bash
 
+
 tests_dir=$(dirname "$0")
 src_dir=$(dirname "$tests_dir")
+PATH=$tests_dir:$src_dir:$PATH
 
 download_dir=$tests_dir/test_install-sh-tools-out-$(date +%s)
-
-PATH=$tests_dir:$src_dir:$PATH
 
 printf "\nRunning tests...
 Current directory: $PWD\n"
 
 printf "\nTest 'install-sh-tools' gets scripts...\n\n"
-install-sh-tools "0.1.5" "$download_dir"
+
+install-sh-tools 0.1.5 ${download_dir}
 
 cmd_list="curl-cvetest
           curl-exists

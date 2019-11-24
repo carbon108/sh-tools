@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SHTOOLS_VERSION=${1:-0.1.3}
-SHTOOLS_DIR=${2:-/opt/carbon108}
+SHTOOLS_VERSION=${1:-0.1.5}
+SHTOOLS_DIR=${2:-/opt/sh-tools}
 
 sh_tools_url=https://github.com/carbon108/sh-tools-docker/archive/$SHTOOLS_VERSION.zip
 

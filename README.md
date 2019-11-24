@@ -10,7 +10,7 @@ Set environment variables:
 
 ```dockerfile
 ENV SHTOOLS_VERSION 0.X.Y
-ENV SHTOOLS_DIR /opt/carbon108   
+ENV SHTOOLS_DIR /opt/sh-tools   
 ```
 
 Get and run installer `install-sh-tools`:
