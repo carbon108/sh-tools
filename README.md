@@ -92,7 +92,7 @@ RUN curl-github ${repo_path} ${release_tag} ${download_dir} file_1 file_2...
 File attributes are preserved. Zip-file archive paths are ignored in output.
 
 `curl-github` is a convenience script that can be used for building 
-new `curl-{REPO_NAME}` tools like `curl-cvetest` and `curl-tini` in this collection
+new `curl-{REPO_NAME}` tools like `curl-cvetest` in this collection
      
 #### Example
 
