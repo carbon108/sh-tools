@@ -16,12 +16,12 @@ ENV SHTOOLS_DIR /opt/sh-tools
 Get and run installer `install-sh-tools`:
 
 ```dockerfile
-RUN curl -Lk https://github.com/carbon108/sh-tools/archive/${SHTOOLS_VERSION}.zip \
-        --output /tmp/c108-sh-tools.zip &&\
-    unzip -j -o -q /tmp/c108-sh-tools.zip \
-        sh-tools-${SHTOOLS_VERSION}/install-sh-tools -d /tmp \
-    && /tmp/install-sh-tools "$SHTOOLS_VERSION" "$SHTOOLS_DIR" \
-    && rm /tmp/install-sh-tools /tmp/c108-sh-tools.zip
+# Get carbon108/sh-tools
+RUN curl -L# https://raw.githubusercontent.com/carbon108/sh-tools/${SHTOOLS_VERSION}/install-sh-tools \
+        --output /tmp/install-sh-tools &&\
+    chmod +x /tmp/install-sh-tools &&\
+    /tmp/install-sh-tools "$SHTOOLS_VERSION" "$SHTOOLS_DIR"  &&\
+    rm /tmp/install-sh-tools
 ```
 
 Add `sh-tools` directory to PATH:
