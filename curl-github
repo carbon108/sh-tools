@@ -8,9 +8,6 @@ FILE_LIST_ELEMENT=$4
 SCRIPT_DIR=$(dirname "$0")
 PATH=$SCRIPT_DIR:$PATH
 
-#printf "\nSCRIPT_DIR $SCRIPT_DIR\n"
-#printf "\nPATH $PATH\n"
-
 [[ -z $FILE_LIST_ELEMENT ]] &&\
     printf "\nFiles to extract not specified. Exiting...\n" &&\
     exit 1
@@ -46,7 +43,7 @@ zip_file=${tmp_dir}/${zip_name}.zip
 
 mkdir -p $tmp_dir &&\
     mkdir -p $DOWNLOAD_DIR &&\
-    curl -Lk $archive_url --output ${zip_file} &&\
+    curl -L# $archive_url --output ${zip_file} &&\
     unzip -o -q "${zip_file}" -d "${tmp_dir}" &&\
     for f in "${@:4}"
         do
