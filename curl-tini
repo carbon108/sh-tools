@@ -14,5 +14,5 @@ tini_file="$TINI_PATH/tini"
     exit 1
 
 mkdir -p $TINI_PATH &&\
-    curl -Lk $url --output $tini_file &&\
+    curl -L# $url --output $tini_file &&\
     chmod +x $tini_file
