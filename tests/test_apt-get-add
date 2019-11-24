@@ -1,0 +1,8 @@
+#!/bin/bash
+
+src_dir=$(dirname "$tests_dir")
+
+printf "\nTest apt-get-add runs 'curl' and 'zip' install...\n\n"
+
+sudo $src_dir/apt-get-add curl zip
+
