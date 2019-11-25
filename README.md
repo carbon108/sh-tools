@@ -40,10 +40,10 @@ ENV BIN_DIR /opt
 ENV SHTOOLS_VERSION 0.1.7
 ENV SHTOOLS_DIR $BIN_DIR/sh-tools
 
-ENV PATH $BIN_DIR:$SHTOOLS_DIR:$PATH
+ENV PATH $SHTOOLS_DIR:$PATH
 
-COPY get-sh-tools $BIN_DIR/
-RUN chmod +x $BIN_DIR/get-sh-tools
+COPY get-sh-tools $SHTOOLS_DIR/
+RUN chmod +x $SHTOOLS_DIR/get-sh-tools
 ```
  
 Get and run installer:
