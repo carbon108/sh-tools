@@ -4,16 +4,7 @@ Shell tools for automating Docker image builds
 
 ## Installation
 
-Follow instructions below in your Dockerfile.
-
-Set environment variables:
-
-```dockerfile
-ENV SHTOOLS_VERSION 0.X.Y
-ENV SHTOOLS_DIR /opt/sh-tools   
-```
-
-Add script `get-sh-tools` 
+Add script `get-sh-tools` to your image build: 
 
 ```shell script
 #!/bin/bash
@@ -32,36 +23,30 @@ curl -L# https://raw.githubusercontent.com/carbon108/sh-tools/${SHTOOLS_VERSION}
     rm /tmp/install-sh-tools
 ```
 
-to Docker image, specify `PATH`, version and directories:
+Set environment variables `SHTOOLS_VERSION` and `SHTOOLS_DIR`
+in `Dockerfile`. Add `SHTOOLS_DIR` to your `PATH`:
 
 ```dockerfile
 ENV BIN_DIR /opt
 
-ENV SHTOOLS_VERSION 0.1.7
+ENV SHTOOLS_VERSION 0.X.Y
 ENV SHTOOLS_DIR $BIN_DIR/sh-tools
-
-ENV PATH $SHTOOLS_DIR:$PATH
+ENV PATH "$SHTOOLS_DIR:$BIN_DIR:$PATH"
 
 COPY get-sh-tools $SHTOOLS_DIR/
 RUN chmod +x $SHTOOLS_DIR/get-sh-tools
 ```
  
-Get and run installer:
+Run `get-sh-tools` to download and install `sh-tools` scripts:
 
 ```dockerfile
 RUN get-sh-tools "$SHTOOLS_VERSION" "$SHTOOLS_DIR"
 ```
 
-Add `sh-tools` directory to PATH:
+Call required scripts in Dockerfile or in running container:
 
 ```dockerfile
-ENV PATH "$SHTOOLS_DIR:$PATH"  
-```
-
-Call `sh-tools` scripts in Dockerfile or in running container:
-
-```dockerfile
-RUN curl-tini /opt 
+RUN curl-tini $BIN_DIR 
 ```
 
 
@@ -128,7 +113,7 @@ Extract two files `curl-exists` and `test_curl-exists` from `sh-tools`
 release `0.1.4` into `/opt` directory
 
 ```dockerfile
-RUN curl-github carbon108/sh-tools 0.1.4 /opt curl-exists tests/test_curl-exists 
+RUN curl-github carbon108/sh-tools 0.1.9 /opt curl-exists tests/test_curl-exists 
 ``` 
 
  
