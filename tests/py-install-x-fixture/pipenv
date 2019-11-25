@@ -1,4 +1,4 @@
 #!/bin/bash
 
-printf "pipenv $*\n"
+printf "  $(basename $0) $*\n"
 

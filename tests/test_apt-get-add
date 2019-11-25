@@ -1,8 +1,13 @@
 #!/bin/bash
 
+tests_dir=$(dirname "$0")
 src_dir=$(dirname "$tests_dir")
 
-printf "\nTest apt-get-add runs 'curl' and 'zip' install...\n\n"
+fixture_dir=$tests_dir/apt-get-add-fixture
 
-sudo $src_dir/apt-get-add curl zip
+PATH=$fixture_dir:$src_dir:$PATH
+
+printf "\nCheck below that 'apt-get-add curl zip' maps to proper commands...\n\n"
+
+apt-get-add curl zip
 
