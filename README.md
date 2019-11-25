@@ -4,7 +4,7 @@ Shell tools for automating Docker image builds
 
 ## Installation
 
-Add script `get-sh-tools` to your image build: 
+Add script `get-sh-tools` with the following contents to your image build: 
 
 ```shell script
 #!/bin/bash
