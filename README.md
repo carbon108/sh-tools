@@ -13,15 +13,43 @@ ENV SHTOOLS_VERSION 0.X.Y
 ENV SHTOOLS_DIR /opt/sh-tools   
 ```
 
-Get and run installer `install-sh-tools`:
+Add script `get-sh-tools` 
 
-```dockerfile
-# Get carbon108/sh-tools
-RUN curl -L# https://raw.githubusercontent.com/carbon108/sh-tools/${SHTOOLS_VERSION}/install-sh-tools \
+```shell script
+#!/bin/bash
+
+SHTOOLS_VERSION=${1}
+SHTOOLS_DIR=${2}
+
+[[ -z $SHTOOLS_VERSION || -z $SHTOOLS_DIR ]] &&\
+    printf "\nsh-tools verson and/or directory not specified. Exiting...\n" &&\
+    exit 1
+
+curl -L# https://raw.githubusercontent.com/carbon108/sh-tools/${SHTOOLS_VERSION}/install-sh-tools \
         --output /tmp/install-sh-tools &&\
     chmod +x /tmp/install-sh-tools &&\
     /tmp/install-sh-tools "$SHTOOLS_VERSION" "$SHTOOLS_DIR"  &&\
     rm /tmp/install-sh-tools
+```
+
+to Docker image, specify `PATH`, version and directories:
+
+```dockerfile
+ENV BIN_DIR /opt
+
+ENV SHTOOLS_VERSION 0.1.7
+ENV SHTOOLS_DIR $BIN_DIR/sh-tools
+
+ENV PATH $BIN_DIR:$SHTOOLS_DIR:$PATH
+
+COPY get-sh-tools $BIN_DIR/
+RUN chmod +x $BIN_DIR/get-sh-tools
+```
+ 
+Get and run installer:
+
+```dockerfile
+RUN get-sh-tools "$SHTOOLS_VERSION" "$SHTOOLS_DIR"
 ```
 
 Add `sh-tools` directory to PATH:
