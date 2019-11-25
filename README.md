@@ -130,7 +130,17 @@ release `0.1.4` into `/opt` directory
 ```dockerfile
 RUN curl-github carbon108/sh-tools 0.1.4 /opt curl-exists tests/test_curl-exists 
 ``` 
+
  
+### `curl-microscanner`
+
+Get Aquasec Microscanner executable into destination directory `${download_dir}`
+
+```dockerfile
+RUN curl-microscanner ${download_dir}
+```    
+
+
 ### `curl-tini`
 
 Get `krallin/tini` executable from GitHub into destination directory `${download_dir}`
