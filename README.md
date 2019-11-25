@@ -28,10 +28,11 @@ in `Dockerfile`. Add `SHTOOLS_DIR` to your `PATH`:
 
 ```dockerfile
 ENV BIN_DIR /opt
+ENV PATH $BIN_DIR:$PATH
 
 ENV SHTOOLS_VERSION 0.X.Y
 ENV SHTOOLS_DIR $BIN_DIR/sh-tools
-ENV PATH "$SHTOOLS_DIR:$BIN_DIR:$PATH"
+ENV PATH $SHTOOLS_DIR:$PATH
 
 COPY get-sh-tools $SHTOOLS_DIR/
 RUN chmod +x $SHTOOLS_DIR/get-sh-tools
