@@ -1,0 +1,16 @@
+#!/bin/bash
+
+tests_dir=$(dirname "$0")
+src_dir=$(dirname "$tests_dir")
+download_dir=$tests_dir/curl-microscanner-out-$(date +%s)
+
+PATH=$tests_dir:$src_dir:$PATH
+
+printf "\nTest curl-microscanner gets binary from the Net...\n\n"
+curl-microscanner $download_dir
+
+! [[ -x "$download_dir/microscanner" ]] &&\
+    printf "\nTest fail: File 'microscanner' not found or is not executable\n" &&\
+    exit 1
+rm -rf "$download_dir"
+printf "\n...OK\n"

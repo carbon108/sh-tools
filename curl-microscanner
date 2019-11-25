@@ -1,0 +1,16 @@
+#!/bin/bash
+
+SCRIPT_DIR=$(dirname "$0")
+MICROSCANNER_DIR=${1:-"$SCRIPT_DIR"}
+
+PATH=$SCRIPT_DIR:$PATH
+
+url=https://get.aquasec.com/microscanner
+
+! curl-exists "$url"  &&\
+    printf "\nAquasec Microscanner release not found. Exiting...\n" &&\
+    exit 1
+
+mkdir -p $MICROSCANNER_DIR || exit 1
+curl -L# $url --output $MICROSCANNER_DIR/microscanner || exit 1
+chmod +x $MICROSCANNER_DIR/microscanner
