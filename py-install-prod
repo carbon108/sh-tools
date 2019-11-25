@@ -1,0 +1,12 @@
+#!/bin/bash
+
+SCRIPT_DIR=$(dirname "$0")
+PATH=$SCRIPT_DIR:$PATH
+
+for pkg in "${@}"
+do
+    pip install "$pkg"
+done
+
+pipenv --version || exit 1
+pipenv install --system --deploy --clear

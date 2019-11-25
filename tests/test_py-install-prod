@@ -1,0 +1,18 @@
+#!/bin/bash
+
+tests_dir=$(dirname "$0")
+src_dir=$(dirname "$tests_dir")
+
+fixture_dir=$tests_dir/py-install-x-fixture
+
+PATH=$fixture_dir:$src_dir:$PATH
+
+saved_pwd=$PWD
+cd $fixture_dir || exit 1
+
+printf "\nCheck below that 'py-install-prod pkg1==v1.0.1 pkg2==2.0.3 pkg3' maps to proper commands...\n\n"
+
+py-install-prod pkg1==v1.0.1 pkg2==2.0.3 pkg3
+
+cd $saved_pwd || exit 1
+
