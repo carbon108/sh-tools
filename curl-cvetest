@@ -4,9 +4,9 @@ CVETEST_VERSION=${CVETEST_VERSION:-'0.1.1'}
 DOWNLOAD_DIR=$1
 TEST_LIST_ITEM=$2
 
-#[[ -z $TEST_LIST_ITEM ]] &&\
-#    printf"\nDownload directory or test list not specified. Exiting...\n"
-#    exit 1
+[[ -z $TEST_LIST_ITEM ]] &&\
+    printf"\nDownload directory or test list not specified. Exiting...\n"
+    exit 1
 
 SCRIPT_DIR=$(dirname "$0")
 PATH=$SCRIPT_DIR:$PATH
