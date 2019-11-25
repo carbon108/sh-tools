@@ -151,3 +151,18 @@ RUN curl-tini /opt
 ```
 creates `/opt/tini` executable       
 
+### `py-install-dev`
+
+Install Python packages for development environment
+
+```dockerfile
+RUN py-install-dev PACKAGE_1  PACKAGE_2==VERSION_2 ...
+```
+
+### `py-install-dev`
+
+Install Python packages for production environment
+
+```dockerfile
+RUN py-install-prod PACKAGE_1  PACKAGE_2==VERSION_2 ...
+```
