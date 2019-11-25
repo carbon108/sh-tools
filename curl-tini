@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 TINI_VERSION=${TINI_VERSION:-'v0.18.0'}
 SCRIPT_DIR=$(dirname "$0")
