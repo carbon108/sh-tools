@@ -7,6 +7,8 @@ PATH=$SCRIPT_DIR:$PATH
 
 url=https://get.aquasec.com/microscanner
 
+cmd-exists curl || exit 1
+
 ! curl-exists "$url"  &&\
     printf "\nAquasec Microscanner release not found. Exiting...\n" &&\
     exit 1

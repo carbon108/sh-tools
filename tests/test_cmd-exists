@@ -1,0 +1,18 @@
+#!/bin/bash
+
+tests_dir=$(dirname "$0")
+src_dir=$(dirname "$tests_dir")
+
+PATH=$tests_dir:$src_dir:$PATH
+
+printf "\nTest 'cmd-exists' can find bash, but not bbashhh...\n\n"
+
+! cmd-exists curl &&\
+    printf "\nTest fail: Command 'bash' not found\n" &&\
+    exit 1
+
+cmd-exists bbashhh &&\
+    printf "\nTest fail: False positive, command 'bbashhh' found\n" &&\
+    exit 1
+
+printf "\n...OK\n"

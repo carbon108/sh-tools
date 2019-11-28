@@ -9,6 +9,8 @@ PATH=$SCRIPT_DIR:$PATH
 url=https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini
 tini_file="$TINI_PATH/tini"
 
+cmd-exists curl || exit 1
+
 ! curl-exists "$url"  &&\
     printf "\ntini release '$tini_ver' not found\n" &&\
     exit 1

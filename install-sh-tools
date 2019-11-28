@@ -10,6 +10,10 @@ sh_tools_zip=$tmp_dir/sh-tools-$SHTOOLS_VERSION.zip
 
 saved_dir=$PWD
 
+cmd-exists curl || exit 1
+cmd-exists unzip || exit 1
+cmd-exists shopt || exit 1
+
 mkdir -p "$SHTOOLS_DIR" || exit 1
 mkdir -p "$tmp_dir"
 
