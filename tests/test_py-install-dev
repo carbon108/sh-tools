@@ -10,7 +10,12 @@ PATH=$fixture_dir:$src_dir:$PATH
 saved_pwd=$PWD
 cd $fixture_dir || exit 1
 
-printf "\nCheck below that 'py-install-dev dev_pkg1==v1.0.1 dev_pkg2==2.0.3 dev_pkg3' maps to proper commands...\n\n"
+printf "\nCheck below that py-install-dev \\
+  dev_pkg1==v1.0.1 \\
+  dev_pkg2==2.0.3  \\
+  dev_pkg3
+
+maps to proper commands:\n\n"
 
 py-install-dev dev_pkg1==v1.0.1 dev_pkg2==2.0.3 dev_pkg3
 

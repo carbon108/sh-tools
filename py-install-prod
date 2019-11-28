@@ -3,10 +3,19 @@
 SCRIPT_DIR=$(dirname "$0")
 PATH=$SCRIPT_DIR:$PATH
 
+PIP_VERSION=${PIP_VERSION:-19.3.1}
+PIPENV_VERSION=${PIPENV_VERSION:-2018.11.26}
+
+cmd-exists pip || exit 1
+cmd-exists pipenv || exit 1
+
+pip install \
+    pip==$PIP_VERSION \
+    pipenv==$PIPENV_VERSION
+
 for pkg in "${@}"
 do
-    pip install "$pkg"
+    pipenv install "$pkg"
 done
 
-pipenv --version || exit 1
 pipenv install --system --deploy --clear

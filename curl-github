@@ -31,6 +31,9 @@ zip_name=${REPO_PATH//\//_}_${RELEASE_TAG}
 tmp_dir=/tmp/${zip_name}
 zip_file=${tmp_dir}/${zip_name}.zip
 
+cmd-exists curl || exit 1
+cmd-exists unzip || exit 1
+
 ! curl-exists "$release_page"  &&\
     { curl-exists "https://github.com/${REPO_PATH}/" &&\
           { printf "\nRelease '$RELEASE_TAG' does not exist in '$REPO_PATH' repository\n" &&\

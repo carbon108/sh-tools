@@ -2,6 +2,8 @@
 
 URL=$1
 
+cmd-exists curl || exit 1
+
 curl --output /dev/null --silent --head --fail "$URL" &&\
     exit 0
 exit 1

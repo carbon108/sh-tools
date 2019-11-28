@@ -1,0 +1,9 @@
+#!/bin/bash
+
+command_name=$1
+
+! command -v "$command_name" > /dev/null &&\
+        echo "'$command_name' not found" &&\
+        exit 1
+
+exit 0

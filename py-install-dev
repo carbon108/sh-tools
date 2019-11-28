@@ -3,10 +3,12 @@
 SCRIPT_DIR=$(dirname "$0")
 PATH=$SCRIPT_DIR:$PATH
 
+cmd-exists pip || exit 1
+cmd-exists pipenv || exit 1
+
 for pkg in "${@}"
 do
-    pip install "$pkg"
+    pipenv install "$pkg"
 done
 
-pipenv --version || exit 1
 pipenv install --system --dev --clear
