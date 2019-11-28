@@ -2,7 +2,9 @@
 
 tests_dir=$(dirname "$0")
 src_dir=$(dirname "$tests_dir")
-PATH=$tests_dir:$src_dir:$PATH
+PATH=$tests_dir:$PATH
+    # src dir should NOT be on the PATH as all those tools are
+    # to be installed by this script
 
 download_dir=$tests_dir/test_install-sh-tools-out-$(date +%s)
 
@@ -11,7 +13,7 @@ Current directory: $PWD\n"
 
 printf "\nTest 'install-sh-tools' gets 3x scripts...\n\n"
 
-install-sh-tools 0.1.6 ${download_dir}
+$src_dir/install-sh-tools 0.1.6 ${download_dir}
 
 cmd_list="apt-get-add
           curl-exists
