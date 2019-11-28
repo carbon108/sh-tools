@@ -3,7 +3,6 @@
 SCRIPT_DIR=$(dirname "$0")
 PATH=$SCRIPT_DIR:$PATH
 
-cmd-exists pip || exit 1
 cmd-exists pipenv || exit 1
 
 for pkg in "${@}"
