@@ -6,12 +6,11 @@ PATH=$SCRIPT_DIR:$PATH
 PIP_VERSION=${PIP_VERSION:-19.3.1}
 PIPENV_VERSION=${PIPENV_VERSION:-2018.11.26}
 
+pip install pip==$PIP_VERSION
+pip install pipenv==$PIPENV_VERSION
+
 cmd-exists pip || exit 1
 cmd-exists pipenv || exit 1
-
-pip install \
-    pip==$PIP_VERSION \
-    pipenv==$PIPENV_VERSION
 
 for pkg in "${@}"
 do
