@@ -149,16 +149,19 @@ creates `/opt/tini` executable
 
 ### `py-install-dev`
 
-Install Python packages for development environment
+Install Python packages for development environment. Should be called after `py-install-prod`
 
 ```dockerfile
 RUN py-install-dev PACKAGE_1  PACKAGE_2==VERSION_2 ...
 ```
 
-### `py-install-dev`
+### `py-install-prod`
 
-Install Python packages for production environment
+Install latest `pip`, `pipenv` and Python packages for production environment
 
 ```dockerfile
+ENV PIP__VERSION      20.0.2
+ENV PIPENV__VERSION   2018.11.26
+
 RUN py-install-prod PACKAGE_1  PACKAGE_2==VERSION_2 ...
 ```
