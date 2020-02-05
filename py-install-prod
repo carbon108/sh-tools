@@ -3,11 +3,13 @@
 SCRIPT_DIR=$(dirname "$0")
 PATH=$SCRIPT_DIR:$PATH
 
-PIP_VERSION=${PIP_VERSION:-19.3.1}
-PIPENV_VERSION=${PIPENV_VERSION:-2018.11.26}
+PIP__VERSION=${PIP__VERSION:-20.0.2}
+PIPENV__VERSION=${PIPENV__VERSION:-2018.11.26}
+    # ! Do NOT use 'PIPENV_VERSION' here, it is crowded in shell environment !
+    # https://github.com/pypa/pipenv/issues/3633#issuecomment-478250721
 
-pip install pip==$PIP_VERSION
-pip install pipenv==$PIPENV_VERSION
+pip install pip==$PIP__VERSION
+pip install pipenv==$PIPENV__VERSION
 
 cmd-exists pip || exit 1
 cmd-exists pipenv || exit 1
