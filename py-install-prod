@@ -16,6 +16,7 @@ cmd-exists pipenv || exit 1
 
 for pkg in "${@}"
 do
+    pipenv --version
     pipenv install "$pkg"
 done
 
