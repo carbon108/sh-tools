@@ -10,4 +10,5 @@ do
     pipenv install "$pkg"
 done
 
+pipenv --version
 pipenv install --system --dev --clear
