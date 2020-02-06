@@ -160,8 +160,13 @@ RUN py-install-dev PACKAGE_1  PACKAGE_2==VERSION_2 ...
 Install latest `pip`, `pipenv` and Python packages for production environment
 
 ```dockerfile
-ENV PIP__VERSION      20.0.2
-ENV PIPENV__VERSION   2018.11.26
-
 RUN py-install-prod PACKAGE_1  PACKAGE_2==VERSION_2 ...
 ```
+
+
+#### Environment
+
+`${PIP__VERSION}` is the `pip` release version. If not set defaults to `20.0.2` 
+
+`${PIP__VERSION}` is the `pipenv` release version. If not set defaults to `2018.11.26`
+    
