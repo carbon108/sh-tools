@@ -30,7 +30,7 @@ export PS1="\n\[\e[34m\]\w\[\e[m\]\n🐝 \h \[\e[33m\]❯ \[\e[m\]"
 # Tools ##########################################################################3
 
 hi(){
-local pattern=$(trim $1)
+local pattern=$1
 [[ -n $pattern ]] \
     && history | cut -c 8- | tail -n 21 | grep $pattern \
     && return
@@ -38,7 +38,7 @@ history | cut -c 8- | tail -n 21
 }
 
 hiii(){
-local pattern=$(trim $1)
+local pattern=$1
 [[ -n $pattern ]] \
     && history | cut -c 8- | grep $pattern \
     && return
