@@ -2,7 +2,6 @@
 # To be sourced in PRODUCTION containers
 #
 
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -19,14 +18,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# ls aliases
-
 alias c="clear"
-
-#alias ll='ls -alF'
-#alias la='ls -A'
-#alias l='ls -CF'
-
-l='ls -lah'
-la='ls -lAh'
-ll='ls -lh'
+alias l='ls -lah'
+alias la='ls -lAh'
+alias ll='ls -lh'
