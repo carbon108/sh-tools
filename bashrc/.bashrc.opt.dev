@@ -3,11 +3,13 @@
 # Requirements: tput
 
 
-# WARNING: Do NOT enable history in production
+# WARNING: Do NOT write history files in production
 
-HISTFILE=$HOME/.bash_history
+HISTFILE=/root/.bash_history
 HISTSIZE=432
 HISTFILESIZE=432
+
+touch $HISTFILE
 
 # don't put duplicate lines or lines starting with space in the history
 HISTCONTROL=ignoreboth
