@@ -22,3 +22,7 @@ alias c="clear"
 alias l='ls -lah'
 alias la='ls -lAh'
 alias ll='ls -lh'
+
+# Custom Bash prompt (INVISIBLE Bee inside!)
+export PS1="\n\[\e[34m\]\w\[\e[m\]\n🐝 \h \[\e[33m\]❯ \[\e[m\]"
+
