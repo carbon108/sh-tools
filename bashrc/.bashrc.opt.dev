@@ -1,0 +1,17 @@
+#
+# To be sourced in DEVELOPMENT containers
+# Requirements: tput
+
+
+# WARNING: Do NOT enable history in production
+
+HISTFILE=$HOME/.bash_history
+HISTSIZE=432
+HISTFILESIZE=432
+
+# don't put duplicate lines or lines starting with space in the history
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
