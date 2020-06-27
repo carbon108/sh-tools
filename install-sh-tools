@@ -31,7 +31,7 @@ cd $tmp_dir/sh-tools-$SHTOOLS_VERSION || exit 1
 
 # Copy scripts omitting Git repo extra files
 shopt -s extglob
-cp !(tests|install-sh-tools) $SHTOOLS_DIR
+cp -r !(tests|install-sh-tools) $SHTOOLS_DIR
     # should omit non-production files
 shopt -u extglob
 
