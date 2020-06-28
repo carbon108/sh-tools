@@ -65,7 +65,7 @@ __prompt_command() {
     PS1=""
 
     if [ $EXIT != 0 ]; then # Add red Flag if exit code non 0
-        PS1+="$prompt_header\n$bee_symbol \h $flag_symbol\[\e[33m\]❯ \[\e[m\]"
+        PS1+="$prompt_header\n$bee_symbol \h \[\e[33m\]$flag_symbol❯ \[\e[m\]"
     else
         PS1+="$prompt_header\n$bee_symbol \h \[\e[33m\]❯ \[\e[m\]"
     fi
