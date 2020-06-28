@@ -26,7 +26,7 @@ alias ll='ls -lh'
 # Custom Bash prompt =============================================================
 # Colors reference: https://misc.flogisoft.com/bash/tip_colors_and_formatting
 
-p_tag=${BEE_TAG:"\[\e[34m\]$BEE_TAG\[\e[m\]"}
+p_tag=${BEE_TAG:+"\[\e[34m\]$BEE_TAG\[\e[m\]"}
 p_separator="\[\e[33m\]·\[\e[m\]"
 p_path="\[\e[90m\]\w\[\e[m\]"
 bee_symbol=$(echo -e "\U0001F41D")

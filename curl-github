@@ -36,11 +36,11 @@ cmd-exists unzip || exit 1
 
 ! curl-exists "$release_page"  &&\
     { curl-exists "https://github.com/${REPO_PATH}/" &&\
-          { printf "\nRelease '$RELEASE_TAG' does not exist in '$REPO_PATH' repository\n" &&\
+          { printf "$RED\nRelease $NORMAL$RELEASE_TAG$RED does not exist in $NORMAL$REPO_PATH$RED repository\n$NORMAL" &&\
           exit 1
           }
 
-      printf "\nRepository '$REPO_PATH' does not exist on GitHub or is private\n" &&\
+      printf "$RED\nRepository $NORMAL$REPO_PATH$RED does not exist on GitHub or is private\n$NORMAL" &&\
       exit 1
     }
 
