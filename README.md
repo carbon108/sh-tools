@@ -18,7 +18,8 @@ SHTOOLS_DIR=${2}
 
 url="https://raw.githubusercontent.com/carbon108/sh-tools/${SHTOOLS_VERSION}/install-sh-tools"
 ! curl --output /dev/null --silent --head --fail "$url" &&\
-    { printf "\nsh-tools release '$SHTOOLS_VERSION' not found. Could not locate 'install-sh-tools' in repository\n\n" &&\
+    { printf "\nsh-tools \e[91mrelease \e[39m$SHTOOLS_VERSION\e[91m not found.
+Could not locate 'install-sh-tools' in repository\n\n" &&\
           exit 1
           }
 
