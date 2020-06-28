@@ -7,6 +7,6 @@ Sleeping for \e[33m$sleep_time\e[m. Run
 
    docker container stop
 
-to stop the Container..."
+to exit..."
 
 sleep $sleep_time
