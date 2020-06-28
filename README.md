@@ -120,7 +120,7 @@ Extract two files `curl-exists` and `test_curl-exists` from `sh-tools`
 release `0.1.4` into `/opt` directory
 
 ```dockerfile
-RUN curl-github carbon108/sh-tools 0.1.9 /opt curl-exists tests/test_curl-exists 
+RUN curl-github carbon108/sh-tools 0.1.9 /tmp curl-exists tests/test_curl-exists 
 ``` 
 
  
