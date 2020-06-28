@@ -23,11 +23,15 @@ alias l='ls -lah'
 alias la='ls -lAh'
 alias ll='ls -lh'
 
-# Custom Bash prompt (INVISIBLE Bee inside!)
-export PS1="\n\[\e[34m\]\w\[\e[m\]\n🐝 \h \[\e[33m\]❯ \[\e[m\]"
+# Custom Bash prompt =============================================================
 
+bee_symbol=$(echo -e "\U0001F41D")
+prompt_header="\n\[\e[34m\]\w"
+prompt_header+=${BEE_TAG:- · $BEE_TAG}
+prompt_header+="\[\e[m\]"
+export PS1="$prompt_header\n$bee_symbol \h \[\e[33m\]❯ \[\e[m\]"
 
-# Tools ##########################################################################3
+# Tools ##########################################################################
 
 hi(){
 local pattern=$1
