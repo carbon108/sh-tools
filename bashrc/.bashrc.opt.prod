@@ -25,11 +25,15 @@ alias ll='ls -lh'
 
 # Custom Bash prompt =============================================================
 
+p_tag=${BEE_TAG:"\[\e[34m\]$BEE_TAG\[\e[m\]"}
+p_separator="\[\e[33m\]·\[\e[m\]"
+p_path="\[\e[34m\]\w\[\e[m\]"
 bee_symbol=$(echo -e "\U0001F41D")
-separator="\[\e[33m\]·\[\e[m\]"
-prompt_header="\n\[\e[34m\]"
-prompt_header+=${BEE_TAG:+"$BEE_TAG $separator "}
-prompt_header+="\w\[\e[m\]"
+
+prompt_header="\n"
+prompt_header+=${BEE_TAG:+"$p_tag $p_separator "}
+prompt_header+="$p_path"
+
 export PS1="$prompt_header\n$bee_symbol \h \[\e[33m\]❯ \[\e[m\]"
 
 # Tools ##########################################################################
