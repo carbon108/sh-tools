@@ -41,7 +41,7 @@ local pattern=$1
 history | cut -c 8-
 }
 
-# PROMPT Wrapper with customization ==============================================
+# PROMPT Wrapper =================================================================
 # Custom Bash prompt =============================================================
 # Colors reference: https://misc.flogisoft.com/bash/tip_colors_and_formatting
 
@@ -65,10 +65,10 @@ __prompt_command() {
     PS1=""
 
     if [ $EXIT != 0 ]; then # Add red Flag if exit code non 0
-        PS1+="$prompt_header\n$bee_symbol \h $🚩flag_symbol\[\e[33m\]❯ \[\e[m\]"
+        PS1+="$prompt_header\n$bee_symbol \h $flag_symbol\[\e[33m\]❯ \[\e[m\]"
     else
         PS1+="$prompt_header\n$bee_symbol \h \[\e[33m\]❯ \[\e[m\]"
     fi
 
-
 }
+# END - PROMPT Wrapper =========================================================
