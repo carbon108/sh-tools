@@ -12,7 +12,7 @@ tini_file="$TINI_PATH/tini"
 cmd-exists curl || exit 1
 
 ! curl-exists "$url"  &&\
-    printf "\ntini release '$tini_ver' not found\n" &&\
+    printf "\e[31m\ntini release '$tini_ver' not found\n\e[0m" &&\
     exit 1
 
 mkdir -p $TINI_PATH &&\

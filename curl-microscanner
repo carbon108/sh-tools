@@ -10,7 +10,7 @@ url=https://get.aquasec.com/microscanner
 cmd-exists curl || exit 1
 
 ! curl-exists "$url"  &&\
-    printf "\nAquasec Microscanner release not found. Exiting...\n" &&\
+    printf "\e[31m\nAquasec Microscanner release not found. Exiting...\n\e[0m" &&\
     exit 1
 
 mkdir -p $MICROSCANNER_DIR || exit 1

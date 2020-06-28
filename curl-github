@@ -12,6 +12,12 @@ PATH=$SCRIPT_DIR:$PATH
     printf "\nFiles to extract not specified. Exiting...\n" &&\
     exit 1
 
+sourceIfExists () {
+    [[ -f "$1" ]] && source "$1"
+}
+
+sourceIfExists $SHTOOLS_DIR/bashrc/.bashrc.opt.colors
+
 repo_name=${REPO_PATH##*/}
     # should provide suffix after `/`
 
@@ -25,8 +31,9 @@ release_trim=${release_trim:-$RELEASE_TAG}
     #          non-digits seem to be removed from tag prefix
     # Replace info: https://unix.stackexchange.com/a/167766/203709
 
-release_page=https://github.com/${REPO_PATH}/releases/tag/${RELEASE_TAG}/
-archive_url=https://github.com/${REPO_PATH}/archive/${RELEASE_TAG}.zip
+repo_url=https://github.com/${REPO_PATH}
+release_page=${repo_url}/releases/tag/${RELEASE_TAG}/
+archive_url=${repo_url}/archive/${RELEASE_TAG}.zip
 zip_name=${REPO_PATH//\//_}_${RELEASE_TAG}
 tmp_dir=/tmp/${zip_name}
 zip_file=${tmp_dir}/${zip_name}.zip
@@ -34,15 +41,15 @@ zip_file=${tmp_dir}/${zip_name}.zip
 cmd-exists curl || exit 1
 cmd-exists unzip || exit 1
 
-! curl-exists "$release_page"  &&\
-    { curl-exists "https://github.com/${REPO_PATH}/" &&\
-          { printf "$RED\nRelease $NORMAL$RELEASE_TAG$RED does not exist in $NORMAL$REPO_PATH$RED repository\n$NORMAL" &&\
-          exit 1
-          }
-
-      printf "$RED\nRepository $NORMAL$REPO_PATH$RED does not exist on GitHub or is private\n$NORMAL" &&\
+curl-exists "${repo_url}/" || {
+      printf "$RED\nRepository $NORMAL$REPO_PATH$RED not found on GitHub or is inaccessible\n$NORMAL" &&\
       exit 1
-    }
+      }
+
+curl-exists "$release_page"  || {
+       printf "$RED\nRelease $NORMAL$RELEASE_TAG$RED does not exist in $NORMAL$REPO_PATH$RED repository\n$NORMAL" &&\
+       exit 1
+       }
 
 mkdir -p $tmp_dir &&\
     mkdir -p $DOWNLOAD_DIR &&\
