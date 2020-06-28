@@ -26,9 +26,9 @@ alias ll='ls -lh'
 # Custom Bash prompt =============================================================
 
 bee_symbol=$(echo -e "\U0001F41D")
-prompt_header="\n\[\e[34m\]\w"
-prompt_header+=${BEE_TAG:+" · $BEE_TAG"}
-prompt_header+="\[\e[m\]"
+prompt_header="\n\[\e[34m\]"
+prompt_header+=${BEE_TAG:+"$BEE_TAG · "}
+prompt_header+="\w\[\e[m\]"
 export PS1="$prompt_header\n$bee_symbol \h \[\e[33m\]❯ \[\e[m\]"
 
 # Tools ##########################################################################
