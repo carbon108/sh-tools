@@ -47,7 +47,7 @@ curl-exists "${repo_url}/" || {
       }
 
 curl-exists "$release_page"  || {
-       printf "$RED\nRelease $NORMAL$RELEASE_TAG$RED does not exist in $NORMAL$REPO_PATH$RED repository\n$NORMAL" &&\
+       printf "$RED\nRelease $NORMAL$RELEASE_TAG$RED not found in $NORMAL$REPO_PATH$RED repository\n$NORMAL" &&\
        exit 1
        }
 
