@@ -45,9 +45,14 @@ history | cut -c 8-
 # Custom Bash prompt =============================================================
 # Colors reference: https://misc.flogisoft.com/bash/tip_colors_and_formatting
 
-p_tag=${BEE_TAG:+"\[\e[34m\]$BEE_TAG\[\e[m\]"}
-p_separator="\[\e[33m\]·\[\e[m\]"
-p_path="\[\e[90m\]\w\[\e[m\]"
+p_normal="\[\e[m\]"
+p_grey="\[\e[90m\]"
+p_orange="\[\e[38;5;214m\]"
+p_yellow="\[\e[38;5;220m\]"
+
+p_tag=${BEE_TAG:+"$p_orange$BEE_TAG$p_normal"}
+p_separator="$p_yellow·$p_normal"
+p_path="$p_grey\w$p_normal"
 bee_symbol=$(echo -e "\U0001F41D")
 flag_symbol=$(echo -e "\U0001F6A9")
 
@@ -65,9 +70,9 @@ __prompt_command() {
     PS1=""
 
     if [ $EXIT != 0 ]; then # Add red Flag if exit code non 0
-        PS1+="$prompt_header\n$bee_symbol \h \[\e[33m\]$flag_symbol❯ \[\e[m\]"
+        PS1+="$prompt_header\n$bee_symbol \h $flag_symbol$p_orange❯ $p_normal"
     else
-        PS1+="$prompt_header\n$bee_symbol \h \[\e[33m\]❯ \[\e[m\]"
+        PS1+="$prompt_header\n$bee_symbol \h $p_orange❯ $p_normal"
     fi
 
 }
