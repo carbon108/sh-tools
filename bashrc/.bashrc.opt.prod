@@ -51,7 +51,7 @@ p_orange="\[\e[38;5;214m\]"
 p_yellow="\[\e[38;5;220m\]"
 
 p_tag=${BEE_TAG:+"$p_orange$BEE_TAG$p_normal"}
-p_separator="$p_yellow·$p_normal"
+p_separator="$p_normal·$p_normal"
 p_path="$p_grey\w$p_normal"
 bee_symbol=$(echo -e "\U0001F41D")
 flag_symbol=$(echo -e "\U0001F6A9")
