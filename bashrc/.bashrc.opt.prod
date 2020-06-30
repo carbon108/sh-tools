@@ -46,22 +46,25 @@ history | cut -c 8-
 # Colors reference: https://misc.flogisoft.com/bash/tip_colors_and_formatting
 
 p_normal="\[\e[m\]"
+p_bold="\[\e[1m\]"
 p_grey="\[\e[90m\]"
 p_orange="\[\e[38;5;214m\]"
+p_lightred="\[\e[38;5;196m\]"
 p_yellow="\[\e[38;5;220m\]"
 
 p_tag=${BEE_TAG:+"$p_orange$BEE_TAG$p_normal"}
 p_separator="$p_normal·$p_normal"
 p_path="$p_grey\w$p_normal"
-bee_symbol=$(echo -e "\U0001F41D")
-flag_symbol=$(echo -e "\U0001F6A9")
+
+BEE_SYMBOL=${BEE_SYMBOL:-"$p_orange$p_bold·$p_normal"}
+BEE_ERROR=${BEE_SYMBOL:-"$p_lightred$p_bold!$p_normal"}
 
 prompt_header="\n"
-prompt_header+=${BEE_TAG:+"$p_tag $p_separator "}
-prompt_header+="$p_path"
+prompt_header+=${BEE_TAG:+"$p_tag $p_separator"}
+prompt_header+=" $p_path"
 
 # SIMPLE version:
-#     export PS1="$prompt_header\n$bee_symbol \h \[\e[33m\]❯ \[\e[m\]"
+#     export PS1="$prompt_header\n$BEE_SYMBOL \h \[\e[33m\]❯ \[\e[m\]"
 
 PROMPT_COMMAND=__prompt_command # Re-generates PS1 after each shell command call
 
@@ -69,10 +72,10 @@ __prompt_command() {
     local EXIT="$?"             # This needs to be first
     PS1=""
 
-    if [ $EXIT != 0 ]; then # Add red Flag if exit code non 0
-        PS1+="$prompt_header\n$bee_symbol \h $flag_symbol$p_orange❯ $p_normal"
+    if [ $EXIT != 0 ]; then # Add red ERROR sybmol if exit code non 0
+        PS1+="$prompt_header\n$BEE_SYMBOL \h $BEE_ERROR$p_orange❯ $p_normal"
     else
-        PS1+="$prompt_header\n$bee_symbol \h $p_orange❯ $p_normal"
+        PS1+="$prompt_header\n$BEE_SYMBOL \h $p_orange❯ $p_normal"
     fi
 
 }
