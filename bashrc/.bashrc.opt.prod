@@ -59,8 +59,8 @@ p_path="$p_grey\w$p_normal"
 # bee_symbol=$(echo -e "\U0001F41D")
 # flag_symbol=$(echo -e "\U0001F6A9")
 
-BEE_SYMBOL=${BEE_SYMBOL:-"$(printf "\U0001F41D")} # Bee Symbol
-BEE_ERROR=${BEE_ERROR:-"$(printf "\U0001F6A9")}   # Flag Symbol
+BEE_SYMBOL=${BEE_SYMBOL:-$(printf "\U0001F41D")} # Bee Symbol
+BEE_ERROR=${BEE_ERROR:-$(printf "\U0001F6A9")}  # Flag Symbol
 
 prompt_header="\n"
 prompt_header+=${BEE_TAG:+"$p_tag $p_separator $p_path"}
