@@ -56,8 +56,11 @@ p_tag=${BEE_TAG:+"$p_orange$BEE_TAG$p_normal"}
 p_separator="$p_normal·$p_normal"
 p_path="$p_grey\w$p_normal"
 
-BEE_SYMBOL=${BEE_SYMBOL:-"$p_orange$p_bold·$p_normal"}
-BEE_ERROR=${BEE_SYMBOL:-"$p_lightred$p_bold!$p_normal"}
+# bee_symbol=$(echo -e "\U0001F41D")
+# flag_symbol=$(echo -e "\U0001F6A9")
+
+BEE_SYMBOL=${BEE_SYMBOL:-"\U0001F41D"}
+BEE_ERROR=${BEE_SYMBOL:-"\U0001F6A9"}
 
 prompt_header="\n"
 prompt_header+=${BEE_TAG:+"$p_tag $p_separator"}
