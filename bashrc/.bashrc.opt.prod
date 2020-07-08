@@ -13,19 +13,21 @@ esac
 # Colors ------------------
 # Colors reference: https://misc.flogisoft.com/bash/tip_colors_and_formatting
 
-esc_normal="\[\e[m\]"
-esc_bold="\[\e[1m\]"
-esc_grey="\[\e[90m\]"
-esc_orange="\[\e[38;5;214m\]"
-esc_lightred="\[\e[38;5;196m\]"
-esc_yellow="\[\e[38;5;220m\]"
+ESC_NORMAL="\[\e[m\]"
+ESC_BOLD="\[\e[1m\]"
+ESC_GREY="\[\e[90m\]"
+ESC_ORANGE="\[\e[38;5;214m\]"
+ESC_LIGHTRED="\[\e[38;5;196m\]"
+ESC_YELLOW="\[\e[38;5;220m\]"
 
 # APP ----------------------
 
 APP_NAME=${APP_NAME:-""}
 APP_PS1=${APP_PS1:-""}
-APP_PS1_SYMBOL=${APP_PS1_SYMBOL:-$(printf "\U0001F41D")} # Bee Symbol
 APP_PS1_ERR_SYMBOL=${APP_PS1_ERR_SYMBOL:-$(printf "\U0001F6A9")}  # Flag Symbol
+APP_PS1_SHEBANG="❯"
+APP_PS1_SYMBOL=${APP_PS1_SYMBOL:-$(printf "\U0001F41D")} # Bee Symbol
+
 #---------------------------
 ### END --- Container ENV Variables
 
@@ -67,7 +69,7 @@ history | cut -c 8-
 # Custom Bash prompt =============================================================
 
 # SIMPLE version:
-#     export PS1="$ps1_header\n$APP_PS1_SYMBOL \h \[\e[33m\]❯ \[\e[m\]"
+#     export PS1="\h # "
 
 PROMPT_COMMAND=__prompt_command # Re-generates PS1 after each shell command call
 
@@ -81,16 +83,16 @@ PS1=""
     return 0
     }
 
-ps1_name=${APP_NAME:+"$esc_orange$APP_NAME$esc_normal"}
-ps1_separator="$esc_normal·"
-ps1_path="$esc_grey\w$esc_normal"
+ps1_name=${APP_NAME:+"$ESC_ORANGE$APP_NAME$ESC_NORMAL"}
+ps1_separator="$ESC_NORMAL·"
+ps1_path="$ESC_GREY\w$ESC_NORMAL"
 
 ps1_header="\n"
 ps1_header+=${APP_NAME:+"$ps1_name $ps1_separator "}
 ps1_header+=${ps1_path}
 
-ps1_footer="$APP_PS1_SYMBOL \h $APP_PS1_ERR_SYMBOL$esc_orange❯ $esc_normal"
-ps1_err_footer="$APP_PS1_SYMBOL \h $esc_orange❯ $esc_normal"
+ps1_footer="$APP_PS1_SYMBOL \h $APP_PS1_ERR_SYMBOL$ESC_ORANGE$APP_PS1_SHEBANG $ESC_NORMAL"
+ps1_err_footer="$APP_PS1_SYMBOL \h $ESC_ORANGE$APP_PS1_SHEBANG $ESC_NORMAL"
 
 # PS1 should depend on EXIT code of previous command
 if [ $EXIT != 0 ]; then # Add ERROR sybmol if exit code non 0
