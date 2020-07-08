@@ -8,7 +8,29 @@ case $- in
       *) return;;
 esac
 
-# enable color support of ls and also add handy aliases
+### Container ENV Variables
+
+# Colors ------------------
+# Colors reference: https://misc.flogisoft.com/bash/tip_colors_and_formatting
+
+esc_normal="\[\e[m\]"
+esc_bold="\[\e[1m\]"
+esc_grey="\[\e[90m\]"
+esc_orange="\[\e[38;5;214m\]"
+esc_lightred="\[\e[38;5;196m\]"
+esc_yellow="\[\e[38;5;220m\]"
+
+# APP ----------------------
+
+APP_NAME=${APP_NAME:-""}
+APP_PS1=${APP_PS1:-""}
+APP_PS1_SYMBOL=${APP_PS1_SYMBOL:-$(printf "\U0001F41D")} # Bee Symbol
+APP_PS1_ERR_SYMBOL=${APP_PS1_ERR_SYMBOL:-$(printf "\U0001F6A9")}  # Flag Symbol
+#---------------------------
+### END --- Container ENV Variables
+
+
+# Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
@@ -43,43 +65,40 @@ history | cut -c 8-
 
 # PROMPT Wrapper =================================================================
 # Custom Bash prompt =============================================================
-# Colors reference: https://misc.flogisoft.com/bash/tip_colors_and_formatting
-
-p_normal="\[\e[m\]"
-p_bold="\[\e[1m\]"
-p_grey="\[\e[90m\]"
-p_orange="\[\e[38;5;214m\]"
-p_lightred="\[\e[38;5;196m\]"
-p_yellow="\[\e[38;5;220m\]"
-
-p_tag=${BEE_TAG:+"$p_orange$BEE_TAG$p_normal"}
-p_separator="$p_normal·$p_normal"
-p_path="$p_grey\w$p_normal"
-
-# bee_symbol=$(echo -e "\U0001F41D")
-# flag_symbol=$(echo -e "\U0001F6A9")
-
-BEE_SYMBOL=${BEE_SYMBOL:-$(printf "\U0001F41D")} # Bee Symbol
-BEE_ERROR=${BEE_ERROR:-$(printf "\U0001F6A9")}  # Flag Symbol
-
-prompt_header="\n"
-prompt_header+=${BEE_TAG:+"$p_tag $p_separator $p_path"}
 
 # SIMPLE version:
-#     export PS1="$prompt_header\n$BEE_SYMBOL \h \[\e[33m\]❯ \[\e[m\]"
+#     export PS1="$ps1_header\n$APP_PS1_SYMBOL \h \[\e[33m\]❯ \[\e[m\]"
 
 PROMPT_COMMAND=__prompt_command # Re-generates PS1 after each shell command call
 
-__prompt_command() {
-    local EXIT="$?"             # This needs to be first
-    PS1=""
+__prompt_command(){
+local EXIT="$?"             # This needs to be first
 
-    if [ $EXIT != 0 ]; then # Add red ERROR sybmol if exit code non 0
-        PS1+="$prompt_header\n$BEE_SYMBOL \h $BEE_ERROR$p_orange❯ $p_normal"
-    else
-        PS1+="$prompt_header\n$BEE_SYMBOL \h $p_orange❯ $p_normal"
-    fi
+PS1=""
 
+[[ -n "$APP_PS1" ]] && {
+    PS1+="$APP_PS1"
+    return 0
+    }
+
+ps1_name=${APP_NAME:+"$esc_orange$APP_NAME$esc_normal"}
+ps1_separator="$esc_normal·"
+ps1_path="$esc_grey\w$esc_normal"
+
+ps1_header="\n"
+ps1_header+=${APP_NAME:+"$ps1_name $ps1_separator "}
+ps1_header+=${ps1_path}
+
+ps1_footer="$APP_PS1_SYMBOL \h $APP_PS1_ERR_SYMBOL$esc_orange❯ $esc_normal"
+ps1_err_footer="$APP_PS1_SYMBOL \h $esc_orange❯ $esc_normal"
+
+# PS1 should depend on EXIT code of previous command
+if [ $EXIT != 0 ]; then # Add ERROR sybmol if exit code non 0
+    PS1+="$ps1_header\n$ps1_footer"
+else
+    PS1+="$ps1_header\n$ps1_err_footer"
+fi
 }
+
 # END - PROMPT Wrapper =========================================================
 
