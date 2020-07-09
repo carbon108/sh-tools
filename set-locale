@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# install locale commands and pre-compiled locales
+apt-get install -y locales locales-all
+
+# Write defaults to /etc/default/locale
+update-locale LANG=en_US.UTF-8 LANGUAGE=en_US LC_ALL=en_US.UTF-8
+
+# Add ENV vars for root user
+printf "\nexport LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8" >> /root/.bashrc

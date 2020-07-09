@@ -91,8 +91,8 @@ ps1_header="\n"
 ps1_header+=${APP_NAME:+"$ps1_name $ps1_separator "}
 ps1_header+=${ps1_path}
 
-ps1_footer="$APP_PS1_SYMBOL \h $APP_PS1_ERR_SYMBOL$ESC_ORANGE$APP_PS1_SHEBANG $ESC_NORMAL"
-ps1_err_footer="$APP_PS1_SYMBOL \h $ESC_ORANGE$APP_PS1_SHEBANG $ESC_NORMAL"
+ps1_footer="$APP_PS1_SYMBOL \h $APP_PS1_ERR_SYMBOL$ESC_ORANGE$APP_PS1_SHEBANG$ESC_NORMAL "
+ps1_err_footer="$APP_PS1_SYMBOL \h $ESC_ORANGE$APP_PS1_SHEBANG$ESC_NORMAL "
 
 # PS1 should depend on EXIT code of previous command
 if [ $EXIT != 0 ]; then # Add ERROR sybmol if exit code non 0
