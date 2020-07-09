@@ -1,12 +1,14 @@
 #!/bin/bash
 
-type=$1
-[[ -z "$SHTOOLS_DIR" || -z "$type" ]] &&\
+[[ -z "$SHTOOLS_DIR" || -z "$1" ]] &&\
    exit 0
 
-rc_file="$SHTOOLS_DIR/bashrc/.bashrc.opt.$type"
-! [[ -f "$rc_file" ]] &&\
-  exit 0
+for type in "$@"
+do
+    rc_file="$SHTOOLS_DIR/bashrc/.bashrc.$type"
+    [[ -f "$rc_file" ]] \
+        || exit 0
+    touch /root/.bashrc &&\
+        cat $rc_file >> /root/.bashrc
+done
 
-touch /root/.bashrc &&\
-    cat $rc_file >> /root/.bashrc

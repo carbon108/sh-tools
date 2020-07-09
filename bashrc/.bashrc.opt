@@ -28,6 +28,14 @@ APP_PS1_ERR_SYMBOL=${APP_PS1_ERR_SYMBOL:-$(printf "\U0001F6A9")}  # Flag Symbol
 APP_PS1_SHEBANG=${APP_PS1_SHEBANG:-"❯"}
 APP_PS1_SYMBOL=${APP_PS1_SYMBOL:-$(printf "\U0001F41D")} # Bee Symbol
 
+if [ "$LANG" == "en_US.UTF-8" ]; then
+    APP_PS1_ERR_SYMBOL=${APP_PS1_ERR_SYMBOL:-$(printf "\U0001F6A9")}  # Flag Symbol
+    APP_PS1_SYMBOL=${APP_PS1_SYMBOL:-$(printf "\U0001F41D")} # Bee Symbol
+else
+    APP_PS1_ERR_SYMBOL=${APP_PS1_ERR_SYMBOL:-"$ESC_LIGHTRED!$ESC_NORMAL"}   # Red '!'
+    APP_PS1_SYMBOL=${APP_PS1_SYMBOL:-"$ESC_ORANGE·$ESC_NORMAL"}             # Orange 'cdot'
+fi
+
 #---------------------------
 ### END --- Container ENV Variables
 
