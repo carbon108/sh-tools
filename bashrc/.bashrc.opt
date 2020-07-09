@@ -24,16 +24,16 @@ ESC_YELLOW="\[\e[38;5;220m\]"
 
 APP_NAME=${APP_NAME:-""}
 APP_PS1=${APP_PS1:-""}
-APP_PS1_ERR_SYMBOL=${APP_PS1_ERR_SYMBOL:-$(printf "\U0001F6A9")}  # Flag Symbol
 APP_PS1_SHEBANG=${APP_PS1_SHEBANG:-"❯"}
-APP_PS1_SYMBOL=${APP_PS1_SYMBOL:-$(printf "\U0001F41D")} # Bee Symbol
 
-if [[ "is.$LANG" == "is.en_US.UTF-8" ]]; then
+if [[ "is.$LANG" == "is.en_US.UTF-8" ]]; then {
     APP_PS1_ERR_SYMBOL=${APP_PS1_ERR_SYMBOL:-$(printf "\U0001F6A9")}  # Flag Symbol
     APP_PS1_SYMBOL=${APP_PS1_SYMBOL:-$(printf "\U0001F41D")} # Bee Symbol
-else
+    }
+else {
     APP_PS1_ERR_SYMBOL=${APP_PS1_ERR_SYMBOL:-"$ESC_LIGHTRED!$ESC_NORMAL"}   # Red '!'
     APP_PS1_SYMBOL=${APP_PS1_SYMBOL:-"$ESC_ORANGE·$ESC_NORMAL"}             # Orange 'cdot'
+    }
 fi
 
 #---------------------------
