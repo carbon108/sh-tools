@@ -1,9 +1,7 @@
 #!/bin/bash
 
 SHTOOLS_VERSION=${1:-20.2.5}
-
-SHTOOLS_DIR=${BIN_DIR:+"$BIN_DIR/sh-tools"}
-SHTOOLS_DIR=${SHTOOLS_DIR:-"/opt/sh-tools"}
+SHTOOLS_DIR=${2:-"/opt/sh-tools"}
 
 sh_tools_url=https://github.com/carbon108/sh-tools-docker/archive/$SHTOOLS_VERSION.zip
 
@@ -39,7 +37,3 @@ shopt -u extglob
 
 rm -rf $tmp_dir
 cd $saved_dir || exit 1
-
-# We should reach this point only if sh-tools installation was successful
-export PATH="$SHTOOLS_DIR:$PATH"
-export SHTOOLS_DIR="$SHTOOLS_DIR"
