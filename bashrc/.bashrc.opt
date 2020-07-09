@@ -1,5 +1,5 @@
 #
-# To be sourced in PRODUCTION containers
+# To be sourced by BASH in PRODUCTION containers
 #
 
 # If not running interactively, don't do anything
@@ -28,7 +28,7 @@ APP_PS1_ERR_SYMBOL=${APP_PS1_ERR_SYMBOL:-$(printf "\U0001F6A9")}  # Flag Symbol
 APP_PS1_SHEBANG=${APP_PS1_SHEBANG:-"❯"}
 APP_PS1_SYMBOL=${APP_PS1_SYMBOL:-$(printf "\U0001F41D")} # Bee Symbol
 
-if [ "$LANG" == "en_US.UTF-8" ]; then
+if [[ "is.$LANG" == "is.en_US.UTF-8" ]]; then
     APP_PS1_ERR_SYMBOL=${APP_PS1_ERR_SYMBOL:-$(printf "\U0001F6A9")}  # Flag Symbol
     APP_PS1_SYMBOL=${APP_PS1_SYMBOL:-$(printf "\U0001F41D")} # Bee Symbol
 else
