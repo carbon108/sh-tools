@@ -31,8 +31,8 @@ if [[ "is.$LANG" == "is.en_US.UTF-8" ]]; then {
     APP_PS1_SYMBOL=${APP_PS1_SYMBOL:-$(printf "\U0001F41D")} # Bee Symbol
     }
 else {
-    APP_PS1_ERR_SYMBOL=${APP_PS1_ERR_SYMBOL:-"$ESC_LIGHTRED!$ESC_NORMAL"}   # Red '!'
-    APP_PS1_SYMBOL=${APP_PS1_SYMBOL:-"$ESC_ORANGE·$ESC_NORMAL"}             # Orange 'cdot'
+    APP_PS1_ERR_SYMBOL=${APP_PS1_ERR_SYMBOL:-"$ESC_LIGHTRED!$ESC_NORMAL"}
+    APP_PS1_SYMBOL=${APP_PS1_SYMBOL:-"$ESC_ORANGE$APP_PS1_SHEBANG$ESC_NORMAL"}
     }
 fi
 
