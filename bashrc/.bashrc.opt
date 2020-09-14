@@ -10,7 +10,7 @@ esac
 
 ### Container ENV Variables
 
-# Colors ------------------
+# Colors for PS1, \[ and \] should be removed for general use ------------------
 # Colors reference: https://misc.flogisoft.com/bash/tip_colors_and_formatting
 
 ESC_NORMAL="\[\e[m\]"
