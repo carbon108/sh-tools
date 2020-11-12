@@ -2,11 +2,8 @@
 
 sleep_time=${1:-1h}
 
-echo -e "
-Sleeping for \e[33m$sleep_time\e[m. Run
-
-   docker container stop
-
+echo -e "Sleeping for \e[33m$sleep_time\e[m.
+Run\e[33m docker container stop \e[m
 to exit..."
 
 sleep $sleep_time
